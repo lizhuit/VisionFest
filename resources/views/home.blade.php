@@ -63,7 +63,12 @@
                         <p class="mt-3 text-gray-700 max-w-2xl mx-auto">
                             Nuestra marca realiza decoraciones de globos para cualquier tipo de evento. Estamos preparados para realizar lo que tengas en mente para sorprender a tus invitados.
                         </p>
-                        <h3 class="text-xl font-bold">Conócenos</h3>
+                        <div class="flex justify-center mt-5">
+                            <button onclick="window.location.href='{{ route('galeria') }}'" class="px-2 py-2 bg-[#FFF7F3] border-2 border-[#C599B6] hover:bg-[#B76A87]">
+                                Conócenos
+                            </button>
+                        </div>
+
                     </div>
                 </div>
             </div>
