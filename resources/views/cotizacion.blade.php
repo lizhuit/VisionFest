@@ -10,7 +10,6 @@
     <div class="flex h-screen">
         <!-- Sidebar -->
         <div class="w-64 bg-[#FAD0C4] p-5 flex flex-col">
-            <h1 class="text-[#D17D98] text-3xl font-bold text-center">VisionFest</h1>
             <!-- Icono de Home arriba -->
             <a href="{{ route('home') }}" class="text-center text-white text-3xl mb-4">
                 <span class="text-4xl">🏠</span>
@@ -31,6 +30,7 @@
            <div class="flex-1 flex flex-col">
         <!-- Encabezado -->
         <div class="bg-[#E3A8B6] flex justify-between items-center p-4">
+            <h1 class="text-[#FFFFFF] text-3xl font-bold text-center">VisionFest</h1>
             <img src="{{ asset('img/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
         </div>
         <h2 class="text-2xl font-bold text-[#6F2063]">Cotización</h2>
