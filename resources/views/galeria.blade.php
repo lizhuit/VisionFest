@@ -12,7 +12,7 @@
 </head>
 <body class="bg-FFF7F3 font-sans">
     <div class="flex h-screen">
-        <!-- Sidebar (igual que en tu código original) -->
+      
         <div class="w-64 bg-[#FAD0C4] p-5 flex flex-col">
             <a href="{{ route('home') }}" class="text-center text-[#D17D98] text-3xl mb-4">
                 <span class="text-4xl">🏠</span>
@@ -69,7 +69,7 @@
                 @endfor
             </div>
 
-            <!-- Botón "Cargar Más" -->
+       
             <div class="text-center mt-10">
                 <button class="px-6 py-2 bg-[#D17D98] text-white rounded-lg hover:bg-[#C599B6]">
                     Cargar Más Eventos

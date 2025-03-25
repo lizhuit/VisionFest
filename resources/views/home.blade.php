@@ -11,9 +11,9 @@
 </head>
 <body class="bg-FFF7F3 font-sans">
     <div class="flex h-screen">
-        <!-- Sidebar -->
+     
         <div class="w-64 bg-[#FAD0C4] p-5 flex flex-col">
-            <!-- Icono de Home arriba -->
+           
             <a href="{{ route('home') }}" class="text-center text-[#D17D98] text-3xl mb-4">
                 <span class="text-4xl">🏠</span>
             </a>
@@ -77,7 +77,7 @@
         </div>
     </div>
 
-    <!-- Modal para preguntar si el usuario es daltónico -->
+    <!-- Modal para pregunta -->
     <div id="daltonicoModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
 
         <div class="bg-[#B76A87] p-6 rounded-lg shadow-xl max-w-md w-full text-center">
@@ -97,17 +97,16 @@
     </div>
 
     <script>
-        // Mostrar el modal automáticamente al cargar la página
+        // Mostrar el modal 
         window.onload = function() {
             document.getElementById('daltonicoModal').classList.remove('hidden');
         };
 
-        // Función para manejar la respuesta del usuario
+        // Función 
         function responderDaltonismo(esDaltonico) {
             document.getElementById('daltonicoModal').classList.add('hidden');
             if (esDaltonico) {
                 alert("Hemos ajustado la interfaz para mejorar tu experiencia.");
-                // Aquí podrías cambiar colores o aplicar estilos especiales
             } else {
                 alert("Gracias por tu respuesta.");
             }

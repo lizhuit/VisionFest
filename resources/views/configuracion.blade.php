@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-HEAD
     <title>VisionFest - Configuración</title>
 
     <title>VisionFest - Cotización</title>
@@ -85,11 +84,11 @@ HEAD
                 if (esDaltonico) {
                     alert("Hemos ajustado la interfaz para mejorar tu experiencia.");
                 } else {
-                    window.location.href = "{{ route('correo') }}"; // Cambia esto por la URL correcta
+                    window.location.href = "{{ route('correo') }}"; 
 
-                    // Aquí puedes agregar cambios de estilos para el modo daltónico
+                    
                 } else {
-                    window.location.href = "ruta_a_tu_vista_de_correo.html"; // Cambia esto por la URL correcta
+                    window.location.href = "ruta_a_tu_vista_de_correo.html"; 
 
                 }
             }

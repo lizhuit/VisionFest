@@ -106,7 +106,7 @@
                         </tr>
                     </thead>
                     <tbody id="productosTabla">
-                        <!-- Los productos se agregarán aquí dinámicamente -->
+                        
                     </tbody>
                 </table>
 

@@ -14,10 +14,10 @@
 </head>
 <body class="bg-[#FFFFFF] font-sans">
     <div class="flex h-screen">
-        <!-- Sidebar -->
+       
         <div class="w-64 bg-[#FAD0C4] p-5 flex flex-col">
             
-            <!-- Icono de Home arriba -->
+        
             <a href="{{ route('home') }}" class="text-center text-white text-3xl mb-4">
                 <span class="text-4xl">🏠</span>
             </a>
@@ -47,7 +47,7 @@
                 <div class="contact-form">
                     <h3 class="text-2xl font-bold">Escribe tu mensaje:</h3>
                     <br><br>
-                    <!-- Caja con líneas para escribir el mensaje -->
+                    <!-- escribir el mensaje -->
                     <div class="w-96 h-32 border-b-2 border-gray-300 mb-4">
                         <input type="text" class="w-full h-full bg-transparent border-none outline-none" placeholder="Escribe aquí tu mensaje...">
                     </div>
