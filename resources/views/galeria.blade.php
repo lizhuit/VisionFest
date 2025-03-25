@@ -33,7 +33,9 @@
        <div class="flex-1 flex flex-col">
         <!-- Encabezado -->
         <div class="bg-[#E3A8B6] flex justify-between items-center p-4">
+
             <h1 class="text-[#FFFFFF] text-3xl font-bold text-center">VisionFest</h1>
+
             <img src="{{ asset('img/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
         </div>
         <h2 class="text-2xl font-bold text-[#6F2063]">Galería</h2>
