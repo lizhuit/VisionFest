@@ -9,8 +9,8 @@
 <body class="bg-[#FFFFFF] font-sans">
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <div class="w-64 bg-[#D17D98] p-5 flex flex-col">
-            <h1 class="text-white text-3xl font-bold text-center">VisionFest</h1>
+        <div class="w-64 bg-[#FAD0C4] p-5 flex flex-col">
+            <h1 class="text-[#D17D98] text-3xl font-bold text-center">VisionFest</h1>
             <!-- Icono de Home arriba -->
             <a href="{{ route('home') }}" class="text-center text-white text-3xl mb-4">
                 <span class="text-4xl">🏠</span>
@@ -22,14 +22,20 @@
                 <a href="{{ route('cotizacion') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
                     <span>📄</span> Cotización
                 </a>
-                <a href="#" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
+                <a href="{{ route('configuracion') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
                     <span>⚙️</span> Configuración
                 </a>
             </nav>
         </div>
+        <!-- Contenido Principal -->
+           <div class="flex-1 flex flex-col">
+        <!-- Encabezado -->
+        <div class="bg-[#E3A8B6] flex justify-between items-center p-4">
+            <img src="{{ asset('img/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
+        </div>
+        <h2 class="text-2xl font-bold text-[#6F2063]">Cotización</h2>
         <!-- Content -->
         <div class="flex-1 p-10 bg-[#FFFFFF]">
-            <h2 class="text-[#D17D98] text-3xl font-bold text-left">Cotización</h2>
             <table class="w-full border mt-5 text-center">
                 <thead class="bg-[#FAD0C4] text-white">
                     <tr>

@@ -25,54 +25,78 @@
                 <a href="{{ route('cotizacion') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
                     <span>📄</span> Cotización
                 </a>
-                <a href="#" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
+                <a href="{{ route('configuracion') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
                     <span>⚙️</span> Configuración
                 </a>
             </nav>
         </div>
-
-        <!-- Contenido principal -->
-        <div class="flex-1 p-10 bg-FFF7F3 relative">
-            <!-- Bordes con globos -->
-            <div class="absolute top-0 bottom-0 left-0 w-40 flex items-center z-0">
-                <img src="{{ asset('img/derecha.png') }}" alt="Globos Izquierda" class="w-full h-full object-cover">
+        
+        <!-- Contenido Principal -->
+        <div class="flex-1 flex flex-col">
+            <!-- Encabezado -->
+            <div class="bg-[#E3A8B6] flex justify-between items-center p-4">
+                <img src="{{ asset('img/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
             </div>
-            <div class="absolute top-0 bottom-0 right-0 w-40 flex items-center z-0">
-                <img src="{{ asset('img/izquierda.png') }}" alt="Globos Derecha" class="w-full h-full object-cover">
-            </div>
-
-            <!-- Logo -->
-            <div class="absolute top-1/3 right-10 z-10">
-                <img src="{{ asset('img/logo.jpg') }}" alt="Logo VisionFest">
-            </div>
-
             <!-- Contenido principal -->
-            <div class="relative z-10 text-center">
-                <h2 class="text-3xl font-bold">"Tu visión, nuestra creación"</h2>
-                <div class="mt-5">
-                    <h3 class="text-[#E6B2BA] text-xl font-bold">UN MUNDO DE COLOR</h3>
-                    <p class="mt-3 text-gray-700 max-w-2xl mx-auto">
-                        Sabemos que los colores son una parte fundamental en la decoración, por eso, en Decoravisión nos aseguramos
-                        de que todos puedan disfrutar de nuestras creaciones.
-                    </p>
-                    <p class="mt-3 text-gray-700 max-w-2xl mx-auto">
-                        Nuestra marca realiza decoraciones de globos para cualquier tipo de evento. Estamos preparados para realizar lo que tengas en mente para sorprender a tus invitados.
-                    </p>
-                    <button class="mt-5 px-6 py-2 bg-[#FFF7F3] text-[#D17D98] border-2 border-[#C599B6] rounded-lg shadow-md hover:bg-[#FAD0C4]">
-                        Conócenos
-                    </button>
+            <div class="flex-1 p-10 bg-FFF7F3 relative">
+                <!-- Bordes con globos -->
+                <div class="absolute top-0 bottom-0 left-0 w-40 flex items-center z-0">
+                    <img src="{{ asset('img/derecha.png') }}" alt="Globos Izquierda" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute top-0 bottom-0 right-0 w-40 flex items-center z-0">
+                    <img src="{{ asset('img/izquierda.png') }}" alt="Globos Derecha" class="w-full h-full object-cover">
+                </div>
+                <!-- Logo -->
+                <div class="absolute top-1/3 right-10 z-10">
+                    <img src="{{ asset('img/logo.jpg') }}" alt="Logo VisionFest">
+                </div>
+
+                <!-- Contenido principal -->
+                <div class="relative z-10 text-center">
+                    <h2 class="text-3xl font-bold">"Tu visión, nuestra creación"</h2>
+                    <div class="mt-5">
+                        <h3 class="text-[#E6B2BA] text-xl font-bold">UN MUNDO DE COLOR</h3>
+                        <p class="mt-3 text-gray-700 max-w-2xl mx-auto">
+                            Sabemos que los colores son una parte fundamental en la decoración, por eso, en Decoravisión nos aseguramos
+                            de que todos puedan disfrutar de nuestras creaciones.
+                        </p>
+                        <p class="mt-3 text-gray-700 max-w-2xl mx-auto">
+                            Nuestra marca realiza decoraciones de globos para cualquier tipo de evento. Estamos preparados para realizar lo que tengas en mente para sorprender a tus invitados.
+                        </p>
+                        <h3 class="text-xl font-bold">Conócenos</h3>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Modal para preguntar si el usuario es daltónico -->
-    <div class="modal">
-        <div class="modal-content">
-            <p class="text-[#D17D98]">¿Eres Daltónico?</p>
-            <button class="btn bg-[#FFF7F3] text-[#D17D98] border-2 border-[#C599B6]">Sí</button>
-            <button class="btn bg-[#FFF7F3] text-[#D17D98] border-2 border-[#C599B6]">No</button>
+    <div id="daltonicoModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-xl max-w-md w-full text-center">
+            <p class="text-[#D17D98] text-xl font-bold mb-4">¿Eres Daltónico?</p>
+            <div class="flex justify-center gap-4">
+                <button onclick="responderDaltonismo(true)" class="px-4 py-2 bg-[#D17D98] text-white rounded-lg hover:bg-[#B76A87]">Sí</button>
+                <button onclick="responderDaltonismo(false)" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400">No</button>
+            </div>
         </div>
     </div>
+
+    <script>
+        // Mostrar el modal automáticamente al cargar la página
+        window.onload = function() {
+            document.getElementById('daltonicoModal').classList.remove('hidden');
+        };
+
+        // Función para manejar la respuesta del usuario
+        function responderDaltonismo(esDaltonico) {
+            document.getElementById('daltonicoModal').classList.add('hidden');
+            if (esDaltonico) {
+                alert("Hemos ajustado la interfaz para mejorar tu experiencia.");
+                // Aquí podrías cambiar colores o aplicar estilos especiales
+            } else {
+                alert("Gracias por tu respuesta.");
+            }
+        }
+    </script>
 </body>
 </html>

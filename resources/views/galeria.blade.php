@@ -25,17 +25,22 @@
                 <a href="{{ route('cotizacion') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
                     <span>📄</span> Cotización
                 </a>
-                <a href="#" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
+                <a href="{{ route('configuracion') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
                     <span>⚙️</span> Configuración
                 </a>
             </nav>
         </div>
-
+       <!-- Contenido Principal -->
+       <div class="flex-1 flex flex-col">
+        <!-- Encabezado -->
+        <div class="bg-[#E3A8B6] flex justify-between items-center p-4">
+            <img src="{{ asset('img/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
+        </div>
+        <h2 class="text-2xl font-bold text-[#6F2063]">Galería</h2>
         <!-- Contenido Principal de la Galería -->
         <div class="flex-1 p-10 overflow-y-auto">
-            <!-- Título y Filtros -->
+         <!-- Título y Filtros -->
             <div class="mb-8 text-center">
-                <h2 class="text-3xl font-bold text-[#D17D98]">Galería de Eventos</h2>
                 <p class="text-gray-600 mt-2">Explora nuestras decoraciones personalizadas</p>
                 
                 <!-- Filtros por categoría -->
