@@ -13,4 +13,8 @@ class VisionController extends Controller
         public function cotizacion() {
             return view('cotizacion');
         }
+        
+        public function galeria() {
+            return view('galeria');
+        }
 }
