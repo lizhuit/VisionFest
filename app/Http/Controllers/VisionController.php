@@ -20,7 +20,9 @@ class VisionController extends Controller
         public function configuracion (){
             return view('configuracion');
         }
+
         public function correo(){
             return view('correo');
         }
+
 }
