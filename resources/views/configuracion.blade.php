@@ -40,10 +40,10 @@
             <div class="bg-[#B76A87] p-6 rounded-lg shadow-xl max-w-md w-full text-center">
                 <p class=" text-xl font-bold mb-4">¿Qué acción desea realizar?</p>
                 <div class="flex justify-center gap-4">
-                    <button onclick="responderAccion(true)" class="px-4 py-4 bg-[#FFF7F3] border-2 border-[#C599B6] hover:bg-[#B76A87]">
+                    <button onclick="responderAccion(true)" class="px-2 py-2 bg-[#FFF7F3] border-2 border-[#C599B6] hover:bg-[#B76A87]">
                         Activar modo daltónico
                     </button>
-                    <button onclick="responderAccion(false)" class="px-4 py-4 bg-[#FFF7F3] border-2 border-[#C599B6] hover:bg-[#B76A87]">
+                    <button onclick="responderAccion(false)" class="px-2 py-2 bg-[#FFF7F3] border-2 border-[#C599B6] hover:bg-[#B76A87]">
                         Enviar correo
                     </button>
                 </div>

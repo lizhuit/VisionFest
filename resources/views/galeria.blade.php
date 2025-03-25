@@ -45,7 +45,6 @@
                 
                 <!-- Filtros por categoría -->
                 <div class="flex justify-center gap-4 mt-5">
-                    <button class="px-4 py-2 bg-[#D17D98] text-white rounded-lg">Todos</button>
                     <button class="px-4 py-2 bg-[#FAD0C4] text-[#D17D98] rounded-lg">Bodas</button>
                     <button class="px-4 py-2 bg-[#FAD0C4] text-[#D17D98] rounded-lg">XV Años</button>
                     <button class="px-4 py-2 bg-[#FAD0C4] text-[#D17D98] rounded-lg">Cumpleaños</button>

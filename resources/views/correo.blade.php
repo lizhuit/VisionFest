@@ -52,7 +52,7 @@
                         <input type="text" class="w-full h-full bg-transparent border-none outline-none" placeholder="Escribe aquí tu mensaje...">
                     </div>
                     <br><br><br>
-                    <button class="px-4 py-4 bg-[#FFF7F3] border-2 border-[#C599B6] hover:bg-[#B76A87]" onclick="enviarCorreo()">Enviar</button>
+                    <button class="px-2 py-2 bg-[#FFF7F3] border-2 border-[#C599B6] hover:bg-[#B76A87]" onclick="enviarCorreo()">Enviar</button>
                 </div>
             </center>
         </div>
