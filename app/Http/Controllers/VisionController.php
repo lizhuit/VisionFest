@@ -25,5 +25,5 @@ class VisionController extends Controller
         public function correo(){
             return view('correo');
         }
-
+        
 }

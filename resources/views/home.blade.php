@@ -24,6 +24,10 @@
                 <a href="{{ route('cotizacion') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
                     <span>📄</span> Cotización
                 </a>
+                </a>
+                <a href="{{ route('correo') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
+                    <span>📧</span> Contáctanos
+                </a>
                 <a href="{{ route('configuracion') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
                     <span>⚙️</span> Configuración
                 </a>
@@ -85,13 +89,6 @@
             <div class="flex justify-center gap-4">
                 <button onclick="responderDaltonismo(true)" class="px-2 py-2 bg-[#FFF7F3] border-2 border-[#C599B6] hover:bg-[#B76A87]">Sí</button>
                 <button onclick="responderDaltonismo(false)" class="px-2 py-2 bg-[#FFF7F3] border-2 border-[#C599B6] hover:bg-[#B76A87]">No</button>
-
-        <div class="bg-white p-6 rounded-lg shadow-xl max-w-md w-full text-center">
-            <p class="text-[#D17D98] text-xl font-bold mb-4">¿Eres Daltónico?</p>
-            <div class="flex justify-center gap-4">
-                <button onclick="responderDaltonismo(true)" class="px-4 py-2 bg-[#D17D98] text-white rounded-lg hover:bg-[#B76A87]">Sí</button>
-                <button onclick="responderDaltonismo(false)" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400">No</button>
-
             </div>
         </div>
     </div>
