@@ -53,7 +53,9 @@
                 </div>
             </div>
 
+           
             <!-- Grid de Imágenes -->
+              <!--
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @for ($i = 1; $i <= 6; $i++)
                     <div class="grid-item relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
@@ -68,7 +70,35 @@
                     </div>
                 @endfor
             </div>
-
+            -->
+            <!-- Grid de Imágenes -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    @foreach($articulos as $articulo)
+        <div class="grid-item relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+            <img src="{{ asset('img/'.$articulo->imagen) }}" alt="{{ $articulo->nombreArticulo }}" class="w-full h-64 object-cover">
+            <div class="overlay absolute inset-0 bg-[#D17D98] bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity">
+                <div class="text-center text-white p-4">
+                    <h3 class="font-bold text-xl">{{ $articulo->nombreArticulo }}</h3>
+                    <p class="mt-2">${{ number_format($articulo->costoArticulo, 2) }}</p>
+                    <button class="mt-3 px-4 py-1 bg-white text-[#D17D98] rounded-lg">Ver Detalles</button>
+                </div>
+            </div>
+        </div>
+    @endforeach
+</div>
+        
+        <div class="grid-item relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+            <img src="{{ $imagePath }}" alt="{{ $title }}" class="w-full h-64 object-cover">
+            <div class="overlay absolute inset-0 bg-[#D17D98] bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity">
+                <div class="text-center text-white p-4">
+                    <h3 class="font-bold text-xl">{{ ucfirst(str_replace(['-', '_'], ' ', $title)) }}</h3>
+                    <p class="mt-2">Decoración personalizada</p>
+                    <button class="mt-3 px-4 py-1 bg-white text-[#D17D98] rounded-lg">Ver Detalles</button>
+                </div>
+            </div>
+        </div>
+    @endforeach
+</div>
        
             <div class="text-center mt-10">
                 <button class="px-6 py-2 bg-[#D17D98] text-white rounded-lg hover:bg-[#C599B6]">

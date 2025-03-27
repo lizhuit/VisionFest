@@ -9,5 +9,5 @@ class articulos extends Model
 {
     use HasFactory;
     protected $primaryKey = 'idArticulo  '; 
-    protected $fillable=['idArticulo ','nombreArticulo','costoArticulo','detalles','idColor'];
+    protected $fillable=['idArticulo ','nombreArticulo','costoArticulo','detalles','idColor','foto'];
 }
