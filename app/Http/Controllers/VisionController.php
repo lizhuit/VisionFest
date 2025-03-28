@@ -9,7 +9,7 @@ use App\Models\clientes;
 use App\Models\colores;
 use App\Models\cotizaciones;
 use App\Models\estados;
-use App\Models\eventos;
+use App\Models\categorias;
 
 
 class VisionController extends Controller
@@ -33,26 +33,45 @@ class VisionController extends Controller
             */
             public function galeria()
             {
-                $categorias = ['Bodas', 'XV Años', 'Cumpleaños', 'Graduaciones', 'Bautizos'];
-                $articulos = articulos::with('color')->get();
+                $categorias = categorias::all(); // Obtiene todas las categorías como objetos Eloquent
+                $articulos = articulos::with(['color', 'categoria'])->get();
                 
                 return view('galeria.galeria', compact('articulos', 'categorias'));
             }
-            
+
             public function galeriaCategoria($categoria)
             {
-                $articulos = articulos::with('color')
-                                    ->where('categoria', $categoria)
+                $categorias = categorias::all();
+                $articulos = articulos::whereHas('categoria', function($query) use ($categoria) {
+                    $query->where('nombreCategoria', $categoria);
+                })->with(['color', 'categoria'])->get();
+                
+                return view('galeria-categoria', [
+                    'articulos' => $articulos,
+                    'categoria' => $categoria,
+                    'categorias' => $categorias
+                ]);
+            }
+
+        
+            /*public function galeriaCategoria($categoria)
+            {
+                $categorias = categorias::all();
+                $articulos = articulos::with(['color', 'categoria'])
+                                    ->whereHas('categoria', function($query) use ($categoria) {
+                                        $query->where('nombreCategoria', $categoria);
+                                    })
                                     ->get();
                 
-                return view('galeria.categoria', compact('articulos', 'categoria'));
-            }
-            
+                return view('galeria.categoria', compact('articulos', 'categorias'));
+            }*/
+        
             public function detalleArticulo($id)
             {
-                $articulo = articulos::with('color')->findOrFail($id);
-                return view('articulo.detalle', compact('articulo'));
+                $articulo = articulos::with(['color', 'categoria'])->findOrFail($id);
+                return view('detalle-articulo', compact('articulo'));
             }
+        
 
 
 
