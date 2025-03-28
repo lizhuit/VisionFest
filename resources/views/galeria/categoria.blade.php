@@ -71,7 +71,7 @@
                             @php
                                 $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
                             @endphp
-                            <img src="{{ asset("img/articulos/$subcarpeta/{$articulo->foto}") }}" 
+                            <img src="{{ asset('img/articulos/' . $subcarpeta . '/' . $articulo->foto) }}"
                                  alt="{{ $articulo->nombreArticulo }}" 
                                  class="w-full h-64 object-cover">
                             <div class="overlay absolute inset-0 bg-[#D17D98] bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity">
