@@ -68,7 +68,7 @@
                     
                     <!-- Imagen del logo centrada -->
                     <div class="mt-10 mb-6">
-                        <img src="{{ asset('img/logoDal.jpg') }}" alt="Logo VisionFest" class="mx-auto max-h-60">
+                        <img src="{{ asset('img/articulos/logoDal.jpg') }}" alt="Logo VisionFest" class="mx-auto max-h-60">
                     </div>
                     
                     <!-- Simbología de colores con etiquetas -->
