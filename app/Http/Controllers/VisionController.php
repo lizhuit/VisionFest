@@ -46,7 +46,7 @@ class VisionController extends Controller
                     $query->where('nombreCategoria', $categoria);
                 })->with(['color', 'categoria'])->get();
                 
-                return view('galeria-categoria', [
+                return view('galeria.categoria', [
                     'articulos' => $articulos,
                     'categoria' => $categoria,
                     'categorias' => $categorias
@@ -69,7 +69,7 @@ class VisionController extends Controller
             public function detalleArticulo($id)
             {
                 $articulo = articulos::with(['color', 'categoria'])->findOrFail($id);
-                return view('detalle-articulo', compact('articulo'));
+                return view('galeria.detalle', compact('articulo'));
             }
         
 

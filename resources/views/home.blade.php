@@ -41,20 +41,20 @@
 
                 <h1 class="text-[#FFFFFF] text-3xl font-bold text-center">VisionFest</h1>
 
-                <img src="{{ asset('img/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
+                <img src="{{ asset('img/articulos/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
             </div>
             <!-- Contenido principal -->
             <div class="flex-1 p-10 bg-FFF7F3 relative">
                 <!-- Bordes con globos -->
                 <div class="absolute top-0 bottom-0 left-0 w-40 flex items-center z-0">
-                    <img src="{{ asset('img/derecha.png') }}" alt="Globos Izquierda" class="w-full h-full object-cover">
+                    <img src="{{ asset('img/articulos/derecha.png') }}" alt="Globos Izquierda" class="w-full h-full object-cover">
                 </div>
                 <div class="absolute top-0 bottom-0 right-0 w-40 flex items-center z-0">
-                    <img src="{{ asset('img/izquierda.png') }}" alt="Globos Derecha" class="w-full h-full object-cover">
+                    <img src="{{ asset('img/articulos/izquierda.png') }}" alt="Globos Derecha" class="w-full h-full object-cover">
                 </div>
                 <!-- Logo -->
                 <div class="absolute top-1/3 right-10 z-10">
-                    <img src="{{ asset('img/logo.jpg') }}" alt="Logo VisionFest">
+                    <img src="{{ asset('img/articulos/logo.jpg') }}" alt="Logo VisionFest">
                 </div>
 
                 <!-- Contenido principal -->
