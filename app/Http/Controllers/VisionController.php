@@ -10,6 +10,11 @@ class VisionController extends Controller
         public function index() {
             return view('home');
         }
+        // VisionController.php
+        public function homeDal() {
+            return view('homeDaltoni');
+        }
+
 
         public function cotizacion() {
             return view('cotizacion');
@@ -17,6 +22,9 @@ class VisionController extends Controller
 
         public function galeria() {
             return view('galeria');
+        }
+        public function galeriaDal(){
+            return view('galeriaDaltoni');
         }
         public function configuracion (){
             return view('configuracion');

@@ -94,20 +94,22 @@
     </div>
 
     <script>
-        // Mostrar el modal 
-        window.onload = function() {
-            document.getElementById('daltonicoModal').classList.remove('hidden');
-        };
+    // Mostrar el modal 
+    window.onload = function() {
+        document.getElementById('daltonicoModal').classList.remove('hidden');
+    };
 
-        // Función 
-        function responderDaltonismo(esDaltonico) {
-            document.getElementById('daltonicoModal').classList.add('hidden');
-            if (esDaltonico) {
-                alert("Hemos ajustado la interfaz para mejorar tu experiencia.");
-            } else {
-                alert("Gracias por tu respuesta.");
-            }
+    // Función ajustada
+    function responderDaltonismo(esDaltonico) {
+        document.getElementById('daltonicoModal').classList.add('hidden');
+        if (esDaltonico) {
+            // Redirige a la nueva vista
+            window.location.href = "{{ route('homeDal') }}"; // Ajusta la ruta según tu backend
+        } else {
+            alert("Gracias por tu respuesta.");
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>
