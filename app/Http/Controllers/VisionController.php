@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\articulos;
+use App\Models\clientes;
+use App\Models\colores;
+use App\Models\cotizaciones;
+use App\Models\estados;
+use App\Models\eventos;
+
 
 class VisionController extends Controller
 {
@@ -20,11 +27,39 @@ class VisionController extends Controller
             return view('cotizacion');
         }
 
-        public function galeria() {
-            return view('galeria');
+        /*public function galeria() {
+            return view('galerias.galeria');
         }
+            */
+            public function galeria()
+            {
+                $categorias = ['Bodas', 'XV Años', 'Cumpleaños', 'Graduaciones', 'Bautizos'];
+                $articulos = articulos::with('color')->get();
+                
+                return view('galeria.galeria', compact('articulos', 'categorias'));
+            }
+            
+            public function galeriaCategoria($categoria)
+            {
+                $articulos = articulos::with('color')
+                                    ->where('categoria', $categoria)
+                                    ->get();
+                
+                return view('galeria.categoria', compact('articulos', 'categoria'));
+            }
+            
+            public function detalleArticulo($id)
+            {
+                $articulo = articulos::with('color')->findOrFail($id);
+                return view('articulo.detalle', compact('articulo'));
+            }
+
+
+
+
+
         public function galeriaDal(){
-            return view('galeriaDaltoni');
+            return view('galeria.galeriaDaltoni');
         }
         public function configuracion (){
             return view('configuracion');

@@ -8,6 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class articulos extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'idArticulo  '; 
-    protected $fillable=['idArticulo ','nombreArticulo','costoArticulo','detalles','idColor','foto'];
+    
+    protected $primaryKey = 'idArticulo';
+    protected $fillable = [
+        'idArticulo',
+        'nombreArticulo',
+        'costoArticulo',
+        'detalles',
+        'idColor',
+        'foto',
+        'categoria'
+    ];
+    
+    public function color()
+    {
+        return $this->belongsTo(colores::class, 'idColor', 'idColor');
+    }
 }
