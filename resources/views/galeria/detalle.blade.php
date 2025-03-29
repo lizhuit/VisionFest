@@ -37,7 +37,7 @@
             <!-- Encabezado -->
             <div class="bg-[#E3A8B6] flex justify-between items-center p-4">
                 <h1 class="text-[#FFFFFF] text-3xl font-bold text-center">VisionFest</h1>
-                <img src="{{ asset('img/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
+                <img src="{{ asset('img/articulos/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
             </div>
 
             <!-- Detalle del Artículo -->
@@ -46,9 +46,16 @@
                     <div class="md:flex">
                         <!-- Imagen del artículo -->
                         <div class="md:w-1/2">
-                            <img src="{{ asset('img/articulos/' . $articulo->categoria->nombreCategoria . '/' . $articulo->foto) }}" 
+                            <img src="{{ $articulo->rutaImagen }}" 
                                 alt="{{ $articulo->nombreArticulo }}" 
-                                class="w-full h-full object-cover">
+                                class="w-full h-full object-cover"
+                                onerror="this.src='{{ asset('img/default-image.jpg') }}'">
+                            <!-- Mensaje de depuración (opcional) -->
+                            <div class="debug-info p-2 bg-gray-100 text-xs hidden">
+                                <p>Ruta: {{ $articulo->rutaImagen }}</p>
+                                <p>Archivo: {{ $articulo->foto }}</p>
+                                <p>Categoría: {{ $articulo->categoria->nombreCategoria }}</p>
+                            </div>
                         </div>
                         
                         <!-- Información del artículo -->
@@ -102,5 +109,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Mostrar información de depuración al mantener Ctrl (opcional)
+        document.addEventListener('keydown', function(e) {
+            if(e.ctrlKey) {
+                document.querySelectorAll('.debug-info').forEach(el => {
+                    el.classList.remove('hidden');
+                });
+            }
+        });
+        document.addEventListener('keyup', function(e) {
+            if(!e.ctrlKey) {
+                document.querySelectorAll('.debug-info').forEach(el => {
+                    el.classList.add('hidden');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
