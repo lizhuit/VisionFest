@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VisionFest -  Galería</title>
+    <title>VisionFest - Galería</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #FFF7F3; }
         .grid-item:hover .overlay { opacity: 1; }
+        .category-btn.active {
+            background-color: #D17D98;
+            color: white;
+        }
     </style>
 </head>
 <body class="bg-FFF7F3 font-sans">
     <div class="flex h-screen">
-      
+        <!-- Sidebar -->
         <div class="w-64 bg-[#FAD0C4] p-5 flex flex-col">
             <a href="{{ route('home') }}" class="text-center text-[#D17D98] text-3xl mb-4">
                 <span class="text-4xl">🏠</span>
@@ -32,83 +36,70 @@
                 </a>
             </nav>
         </div>
-       <!-- Contenido Principal -->
-       <div class="flex-1 flex flex-col">
-        <!-- Encabezado -->
-        <div class="bg-[#E3A8B6] flex justify-between items-center p-4">
 
-            <h1 class="text-[#FFFFFF] text-3xl font-bold text-center">VisionFest</h1>
-
-            <img src="{{ asset('img/articulos/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
-        </div>
-        <h2 class="text-2xl font-bold text-[#6F2063]">Galería</h2>
-        <!-- Contenido Principal de la Galería -->
-        <div class="flex-1 p-10 overflow-y-auto">
-         <!-- Título y Filtros -->
-            <div class="mb-8 text-center">
-                <p class="text-gray-600 mt-2">Explora nuestras decoraciones personalizadas</p>
-                
-                <!-- Filtros por categoría -->
-                <div class="flex justify-center gap-4 mt-5">
-                    <button class="px-4 py-2 bg-[#FAD0C4] text-[#D17D98] rounded-lg">Bodas</button>
-                    <button class="px-4 py-2 bg-[#FAD0C4] text-[#D17D98] rounded-lg">XV Años</button>
-                    <button class="px-4 py-2 bg-[#FAD0C4] text-[#D17D98] rounded-lg">Cumpleaños</button>
-                </div>
+        <!-- Contenido Principal -->
+        <div class="flex-1 flex flex-col">
+            <!-- Encabezado -->
+            <div class="bg-[#E3A8B6] flex justify-between items-center p-4">
+                <h1 class="text-[#FFFFFF] text-3xl font-bold text-center">VisionFest</h1>
+                <img src="{{ asset('img/articulos/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
             </div>
+            
+            <h2 class="text-2xl font-bold text-[#6F2063] p-4">Galería</h2>
 
-           
-            <!-- Grid de Imágenes -->
-              <!--
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @for ($i = 1; $i <= 6; $i++)
+            <!-- Contenido Principal de la Galería -->
+            <div class="flex-1 p-10 overflow-y-auto">
+                <!-- Filtros por categoría -->
+                <div class="flex justify-center gap-4 mb-8">
+                    @foreach($categorias as $cat)
+                    <a href="{{ route('galeria.categoria', ['categoria' => $cat->nombreCategoria]) }}" 
+                    class="category-btn px-4 py-2 {{ $cat->nombreCategoria == ($categoria ?? '') ? 'bg-[#D17D98] text-white' : 'bg-[#FAD0C4] text-[#D17D98]' }} rounded-lg">
+                        {{ $cat->nombreCategoria }}
+                    </a>
+                    @endforeach
+                </div>
+
+                <!-- Grid de Imágenes -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @foreach($articulos as $articulo)
                     <div class="grid-item relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                        <img src="{{ asset('img/img54.png') }}" alt="Evento {{ $i }}" class="w-full h-64 object-cover">
-                        <div class="overlay absolute inset-0 bg-[#D17D98] bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity">
-                            <div class="text-center text-white p-4">
-                                <h3 class="font-bold text-xl">Evento {{ $i }}</h3>
-                                <p class="mt-2">Decoración con globos y flores</p>
-                                <button class="mt-3 px-4 py-1 bg-white text-[#D17D98] rounded-lg">Ver Detalles</button>
+                        <a href="{{ route('articulo.detalle', ['id' => $articulo->idArticulo]) }}">
+                            <img src="{{ $articulo->rutaImagen }}" 
+                                alt="{{ $articulo->nombreArticulo }}" 
+                                class="w-full h-64 object-cover">
+                            <div class="overlay absolute inset-0 bg-[#D17D98] bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity">
+                                <div class="text-center text-white p-4">
+                                    <h3 class="font-bold text-xl">{{ $articulo->nombreArticulo }}</h3>
+                                    <p class="text-[#D17D98]">${{ number_format((float)$articulo->costoArticulo, 2) }}</p>
+                                    <span class="mt-3 inline-block px-4 py-1 bg-white text-[#D17D98] rounded-lg">Ver Detalles</span>
+                                </div>
                             </div>
+                        </a>
+                        <div class="p-4">
+                            <h3 class="font-semibold">{{ $articulo->nombreArticulo }}</h3>
+                            <p class="text-[#D17D98]">${{ number_format($articulo->costoArticulo, 2) }}</p>
+                            <p class="text-sm text-gray-600">{{ $articulo->categoria->nombreCategoria }}</p>
                         </div>
                     </div>
-                @endfor
-            </div>
-            -->
-            <!-- Grid de Imágenes -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    @foreach($articulos as $articulo)
-        <div class="grid-item relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <img src="{{ asset('img/'.$articulo->imagen) }}" alt="{{ $articulo->nombreArticulo }}" class="w-full h-64 object-cover">
-            <div class="overlay absolute inset-0 bg-[#D17D98] bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity">
-                <div class="text-center text-white p-4">
-                    <h3 class="font-bold text-xl">{{ $articulo->nombreArticulo }}</h3>
-                    <p class="mt-2">${{ number_format($articulo->costoArticulo, 2) }}</p>
-                    <button class="mt-3 px-4 py-1 bg-white text-[#D17D98] rounded-lg">Ver Detalles</button>
+                    @endforeach
                 </div>
-            </div>
-        </div>
-    @endforeach
-</div>
-        
-        <div class="grid-item relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <img src="{{ $imagePath }}" alt="{{ $title }}" class="w-full h-64 object-cover">
-            <div class="overlay absolute inset-0 bg-[#D17D98] bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity">
-                <div class="text-center text-white p-4">
-                    <h3 class="font-bold text-xl">{{ ucfirst(str_replace(['-', '_'], ' ', $title)) }}</h3>
-                    <p class="mt-2">Decoración personalizada</p>
-                    <button class="mt-3 px-4 py-1 bg-white text-[#D17D98] rounded-lg">Ver Detalles</button>
-                </div>
-            </div>
-        </div>
-    
-</div>
-       
-            <div class="text-center mt-10">
-                <button class="px-6 py-2 bg-[#D17D98] text-white rounded-lg hover:bg-[#C599B6]">
-                    Cargar Más Eventos
-                </button>
             </div>
         </div>
     </div>
+
+    <script>
+        // Resaltar categoría activa
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentCategory = "{{ request()->segment(2) }}";
+            if(currentCategory) {
+                const buttons = document.querySelectorAll('.category-btn');
+                buttons.forEach(btn => {
+                    if(btn.textContent.trim() === currentCategory) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
