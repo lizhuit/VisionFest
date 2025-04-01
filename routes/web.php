@@ -10,9 +10,7 @@ Route::get('homeDal', [VisionController::class, 'homeDal'])->name('homeDal');
 Route::get('/configuracion', [VisionController::class, 'configuracion'])->name('configuracion');
 Route::get('/correo', [VisionController::class, 'correo'])->name('correo');
 
-
-
-Route::get('/enviarcorreo', [CorreoController::class, 'enviarCorreo'])->name('correoj');
+//Route::get('/enviarcorreo', [CorreoController::class, 'enviarCorreo'])->name('correoj');
 
 //-----------------------------------Galeria Normal
 /*

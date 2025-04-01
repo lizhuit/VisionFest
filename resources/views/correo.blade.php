@@ -32,7 +32,7 @@
         <div class="flex-1 flex flex-col">
             <div class="bg-[#E3A8B6] flex justify-between items-center p-4">
                 <h1 class="text-[#FFFFFF] text-3xl font-bold text-center">VisionFest</h1>
-                <img src="{{ asset('img/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
+                <img src="{{ asset('img/articulos/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
             </div>
             <h2 class="text-2xl font-bold text-[#6F2063]">Contáctanos</h2>
 
@@ -55,21 +55,37 @@
     </div>
 
     <script>
-        function enviarCorreo() {
-            let nombre = document.getElementById("nombre").value;
-            let email = document.getElementById("email").value;
-            let mensaje = document.getElementById("mensaje").value;
+     function enviarCorreo() {
+    let nombre = document.getElementById("nombre").value;
+    let email = document.getElementById("email").value;
+    let mensaje = document.getElementById("mensaje").value;
 
-            if (!nombre || !email || !mensaje) {
-                alert("Por favor, completa todos los campos.");
-                return;
-            }
+    if (!nombre || !email || !mensaje) {
+        alert("Por favor, completa todos los campos.");
+        return;
+    }
 
-            let asunto = encodeURIComponent("Consulta de " + nombre);
-            let body = encodeURIComponent(Nombre: ${nombre}\nCorreo: ${email}\nMensaje: ${mensaje});
+    let formData = new FormData();
+    formData.append("nombre", nombre);
+    formData.append("email", email);
+    formData.append("mensaje", mensaje);
 
-            window.location.href = mailto:huitzillizbeth4@gmail.com?subject=${asunto}&body=${body};
+    fetch("enviarCorreo.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "success") {
+            alert("Correo enviado correctamente.");
+        } else {
+            alert("Error: " + data.message);
         }
-    </script>
+    })
+    .catch(error => {
+        alert("Error en la solicitud: " + error);
+    });
+}
+</script>
 </body>
 </html>
