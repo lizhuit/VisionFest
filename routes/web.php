@@ -14,25 +14,16 @@ Route::get('/correo', [VisionController::class, 'correo'])->name('correo');
 Route::get('/enviarcorreo', [CorreoController::class, 'enviarCorreo'])->name('correoj');
 
 //-----------------------------------Galeria Normal
-/*
-Route::get('/galeria', [VisionController::class, 'galeria'])->name('galeria');
-Route::get('/galeria/{categoria}', [VisionController::class, 'galeriaCategoria'])->name('galeria.categoria');
-Route::get('/articulo/{id}', [VisionController::class, 'detalleArticulo'])->name('articulo.detalle');
-Route::post('/agregar-cotizacion', [VisionController::class, 'agregarCotizacion'])->name('agregar.cotizacion');
-*/
-//detalles
-Route::get('/galeria', [VisionController::class, 'galeria'])->name('galeria');
-Route::get('/galeria/{categoria}', [VisionController::class, 'galeriaCategoria'])->name('galeria.categoria');
-Route::get('/articulo/{id}', [VisionController::class, 'detalleArticulo'])->name('articulo.detalle');
-Route::post('/agregar-cotizacion', [VisionController::class, 'agregarCotizacion'])->name('galeria.cotizacion');
 
-//cotizar
+Route::get('/galeria', [VisionController::class, 'galeria'])->name('galeria');
+Route::get('/galeria/{categoria}', [VisionController::class, 'galeriaCategoria'])->name('galeria.categoria');
+Route::get('/articulo-normal/{id}', [VisionController::class, 'detalleArticulo'])->name('articulo.detalleN');
+
+// Rutas COTIZACIÓN normal
 Route::get('/cotizacion', [VisionController::class, 'cotizacion'])->name('cotizacion');
-Route::post('/agregar-cotizacion', [VisionController::class, 'agregarCotizacion'])->name('agregar.cotizacion');
+Route::post('/agregar-cotizacion-normal', [VisionController::class, 'agregarCotizacion'])->name('agregar.cotizacion');
 Route::delete('/eliminar-cotizacion/{index}', [VisionController::class, 'eliminarCotizacion'])->name('eliminar.cotizacion');
 Route::post('/cancelar-cotizacion', [VisionController::class, 'cancelarCotizacion'])->name('cancelar.cotizacion');
-
-
 //-----------------------------------Galeria DALTONICO
 
 //detalles

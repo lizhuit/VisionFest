@@ -67,7 +67,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach($articulos as $articulo)
                     <div class="grid-item relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                        <a href="{{ route('articulo.detalle', ['id' => $articulo->idArticulo]) }}">
+                        <a href="{{ route('articulo.detalleN', ['id' => $articulo->idArticulo]) }}">
                             @php
                                 $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
                             @endphp

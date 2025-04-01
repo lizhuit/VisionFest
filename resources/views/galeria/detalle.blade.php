@@ -54,10 +54,13 @@
                     <div class="md:flex">
                         <!-- Imagen del artículo -->
                         <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-4">
-                            <img src="{{ $articulo->rutaImagen }}" 
-                                alt="{{ $articulo->nombreArticulo }}" 
-                                class="w-full h-auto max-h-96 object-contain"
-                                onerror="this.src='{{ asset('img/default-image.jpg') }}'">
+                        @php
+                                $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
+                            @endphp
+                            <img src="{{ asset('img/articulos/' . $subcarpeta . '/' . $articulo->foto) }}"
+                                 alt="{{ $articulo->nombreArticulo }}" 
+                                 class="w-full h-64 object-cover"
+                                    onerror="this.src='{{ asset('img/default-image.jpg') }}'">
                         </div>
                         
                         <!-- Información del artículo -->
