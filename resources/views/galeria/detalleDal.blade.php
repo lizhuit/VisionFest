@@ -54,10 +54,12 @@
                     <div class="md:flex">
                         <!-- Imagen del artículo -->
                         <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-4">
-                            <img src="{{ $articulo->rutaImagen }}" 
-                                alt="{{ $articulo->nombreArticulo }}" 
-                                class="w-full h-auto max-h-96 object-contain"
-                                onerror="this.src='{{ asset('img/default-image.jpg') }}'">
+                            @php
+                                $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
+                            @endphp
+                            <img src="{{ asset('img/articulos/' . $subcarpeta . '/' . $articulo->fotoD) }}"
+                                 alt="{{ $articulo->nombreArticulo }}" 
+                                 class="w-full h-64 object-cover">
                         </div>
                         
                         <!-- Información del artículo -->
@@ -113,6 +115,11 @@
                                             class="w-full px-6 py-3 bg-[#D17D98] text-white rounded-lg hover:bg-[#C599B6] transition flex items-center justify-center">
                                         <span class="mr-2">➕</span> Agregar a Cotización
                                     </button>
+                                    <br>
+                                    <a href="{{ route('galeria.categoriaDal', ['categoria' => $articulo->categoria->nombreCategoria]) }}" 
+                                    class="w-full px-6 py-3 bg-[#D17D98] text-white rounded-lg hover:bg-[#C599B6] transition flex items-center justify-center">
+                                        ← Regresar a {{ $articulo->categoria->nombreCategoria }}
+                                    </a>
                                 </form>
                                 </a>
                             </div>

@@ -65,13 +65,14 @@
 
                 <!-- Grid de Imágenes -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
                     @foreach($articulos as $articulo)
                     <div class="grid-item relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
                         <a href="{{ route('articulo.detalleDal', ['id' => $articulo->idArticulo]) }}">
                             @php
                                 $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
                             @endphp
-                            <img src="{{ asset('img/articulos/' . $subcarpeta . '/' . $articulo->foto) }}"
+                            <img src="{{ asset('img/articulos/' . $subcarpeta . '/' . $articulo->fotoD) }}"
                                  alt="{{ $articulo->nombreArticulo }}" 
                                  class="w-full h-64 object-cover">
                             <div class="overlay absolute inset-0 bg-[#D17D98] bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity">
@@ -89,6 +90,45 @@
                         </div>
                     </div>
                     @endforeach
+    <!--
+                @foreach($articulos as $articulo)
+                    <div class="grid-item relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                        
+                        <a href="{{ route('articulo.detalleDal', ['id' => $articulo->idArticulo]) }}">
+                            <img src="{{ asset('img/articulos/' . $subcarpeta . '/' . $articulo->fotoD) }}"
+                                alt="{{ $articulo->nombreArticulo }}" 
+                                class="w-full h-64 object-cover">  
+                        </a>
+                        
+                   
+                        <div class="p-4">
+                            <form action="{{ route('agregar.cotizacionDal') }}" method="POST" class="mt-2">
+                                @csrf
+                                <input type="hidden" name="idArticulo" value="{{ $articulo->idArticulo }}">
+                                
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <label for="cantidad" class="mr-2 text-sm">Cantidad:</label>
+                                        <input type="number" name="cantidad" id="cantidad" 
+                                            min="1" value="1" 
+                                            class="w-16 px-2 py-1 border border-[#D17D98] rounded">
+                                    </div>
+                                    
+                                    <button type="submit" 
+                                            class="px-4 py-2 bg-[#D17D98] text-white rounded-lg hover:bg-[#C599B6] transition">
+                                        Agregar
+                                    </button>
+                                </div>
+                            </form>
+                            
+                        
+                            <h3 class="font-semibold mt-2">{{ $articulo->nombreArticulo }}</h3>
+                            <p class="text-[#D17D98]">${{ number_format((float)$articulo->costoArticulo, 2) }}</p>
+                            <p class="text-sm text-gray-600">{{ $articulo->categoria->nombreCategoria }}</p>
+                        </div>
+                    </div>
+                    @endforeach
+    -->
                 </div>
 
                 

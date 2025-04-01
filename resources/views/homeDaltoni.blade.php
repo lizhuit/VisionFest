@@ -78,7 +78,7 @@
                         
                         <!-- Imagen del logo centrada -->
                         <div class="shrink-0">
-                            <img src="{{ asset('img/articulos/logoDal.jpg') }}" alt="Logo VisionFest" class="max-h-60">
+                            <img src="{{ asset('img/articulos/logoDal.jpg') }}" alt="Logo VisionFestD" class="max-h-60">
                         </div>
                         
                         <!-- Cuadro de información derecho -->

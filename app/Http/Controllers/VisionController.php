@@ -32,39 +32,37 @@ class VisionController extends Controller
         }
 
 //-------------------------------------------------------------------galeria NORMAL
-            public function galeria()
-            {
-                $categorias = categorias::all(); 
-                $articulos = articulos::with(['color', 'categoria'])->get();
+        public function galeria()
+        {
+            $categorias = categorias::all(); 
+            $articulos = articulos::with(['color', 'categoria'])->get();
 
-                foreach ($articulos as $articulo) {
-                    // Normaliza el nombre de la categoría para la ruta
-                    $subcarpeta = strtolower(str_replace([' ', 'ñ', 'áéíóú'], ['-', 'n', 'aeiou'], $articulo->categoria->nombreCategoria));
-                    
-                    // Asegura que el nombre del archivo tenga extensión
-                    $nombreArchivo = $articulo->foto;
-                    if (!pathinfo($nombreArchivo, PATHINFO_EXTENSION)) {
-                        $extensiones = ['.jpg', '.jpeg', '.png', '.webp'];
-                        foreach ($extensiones as $ext) {
-                            if (Storage::disk('public')->exists('articulos/'.$subcarpeta.'/'.$nombreArchivo.$ext)) {
-                                $nombreArchivo .= $ext;
-                                break;
-                            }
+            foreach ($articulos as $articulo) {
+                // Usar foto normal para galería estándar
+                $subcarpeta = strtolower(str_replace([' ', 'ñ', 'áéíóú'], ['-', 'n', 'aeiou'], $articulo->categoria->nombreCategoria));
+                $nombreArchivo = $articulo->foto; // Usando la columna foto normal
+                
+                if (!pathinfo($nombreArchivo, PATHINFO_EXTENSION)) {
+                    $extensiones = ['.jpg', '.jpeg', '.png', '.webp'];
+                    foreach ($extensiones as $ext) {
+                        if (Storage::disk('public')->exists('articulos/'.$subcarpeta.'/'.$nombreArchivo.$ext)) {
+                            $nombreArchivo .= $ext;
+                            break;
                         }
                     }
-                    
-                    $rutaImagen = 'articulos/'.$subcarpeta.'/'.$nombreArchivo;
-
-                    if (Storage::disk('public')->exists($rutaImagen)) {
-                        $articulo->rutaImagen = Storage::url($rutaImagen);
-                    } else {
-                        $articulo->rutaImagen = asset('img/default-image.jpg');
-                        \Log::error("Imagen no encontrada: ".$rutaImagen."\nRuta completa: ".storage_path('app/public/'.$rutaImagen));
-                    }
                 }
+                
+                $rutaImagen = 'articulos/'.$subcarpeta.'/'.$nombreArchivo;
 
-                return view('galeria.galeria', compact('articulos', 'categorias'));
+                if (Storage::disk('public')->exists($rutaImagen)) {
+                    $articulo->rutaImagen = Storage::url($rutaImagen);
+                } else {
+                    $articulo->rutaImagen = asset('img/default-image.jpg');
+                }
             }
+
+            return view('galeria.galeria', compact('articulos', 'categorias'));
+        }
             
         public function galeriaCategoria($categoria)
         {
@@ -94,26 +92,32 @@ class VisionController extends Controller
         }
         
             public function detalleArticulo($id)
-            {
-                $articulo = articulos::with(['color', 'categoria'])->findOrFail($id);
-                
-                // Generar ruta de imagen igual que en galeria()
-                $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
-                $nombreArchivo = $articulo->foto;
-                
-                // Si el nombre no tiene extensión, asumir .png (según tus imágenes)
-                if (!pathinfo($nombreArchivo, PATHINFO_EXTENSION)) {
-                    $nombreArchivo .= '.png';
-                }
-                
-                $rutaImagen = 'articulos/' . $subcarpeta . '/' . $nombreArchivo;
-                
-                $articulo->rutaImagen = Storage::disk('public')->exists($rutaImagen)
-                    ? Storage::url($rutaImagen)
-                    : asset('img/default-image.jpg');
-
-                return view('galeria.detalle', compact('articulo'));
+{
+    $articulo = articulos::with(['color', 'categoria'])->findOrFail($id);
+    
+    // Usar foto normal para la versión estándar
+    $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
+    $nombreArchivo = $articulo->foto; // Usamos la imagen normal
+    
+    // Si el nombre no tiene extensión, buscar la extensión correcta
+    if (!pathinfo($nombreArchivo, PATHINFO_EXTENSION)) {
+        $extensiones = ['.jpg', '.jpeg', '.png', '.webp'];
+        foreach ($extensiones as $ext) {
+            if (Storage::disk('public')->exists('articulos/'.$subcarpeta.'/'.$nombreArchivo.$ext)) {
+                $nombreArchivo .= $ext;
+                break;
             }
+        }
+    }
+    
+    $rutaImagen = 'articulos/'.$subcarpeta.'/'.$nombreArchivo;
+    
+    $articulo->rutaImagen = Storage::disk('public')->exists($rutaImagen)
+        ? Storage::url($rutaImagen)
+        : asset('img/default-image.jpg');
+
+    return view('galeria.detalle', compact('articulo'));
+}
         
 
 //---------------------------------------------------------------Galeria DALTONICO
@@ -124,11 +128,10 @@ class VisionController extends Controller
                 $articulos = articulos::with(['color', 'categoria'])->get();
 
                 foreach ($articulos as $articulo) {
-                    // Normaliza el nombre de la categoría para la ruta
+                    // Usar fotoD para galeríaDaltoni
                     $subcarpeta = strtolower(str_replace([' ', 'ñ', 'áéíóú'], ['-', 'n', 'aeiou'], $articulo->categoria->nombreCategoria));
+                    $nombreArchivo = $articulo->fotoD; // Cambiado a fotoD para Daltoni
                     
-                    // Asegura que el nombre del archivo tenga extensión
-                    $nombreArchivo = $articulo->foto;
                     if (!pathinfo($nombreArchivo, PATHINFO_EXTENSION)) {
                         $extensiones = ['.jpg', '.jpeg', '.png', '.webp'];
                         foreach ($extensiones as $ext) {
@@ -145,13 +148,13 @@ class VisionController extends Controller
                         $articulo->rutaImagen = Storage::url($rutaImagen);
                     } else {
                         $articulo->rutaImagen = asset('img/default-image.jpg');
-                        \Log::error("Imagen no encontrada: ".$rutaImagen."\nRuta completa: ".storage_path('app/public/'.$rutaImagen));
                     }
                 }
 
                 return view('galeria.galeriaDaltoni', compact('articulos', 'categorias'));
             }
-            public function galeriaCategoriaDaltoni($categoria)
+/*
+            public function galeriaCategoriaDal($categoria)
         {
             $categorias = categorias::all();
             $articulos = articulos::whereHas('categoria', function($query) use ($categoria) {
@@ -161,7 +164,7 @@ class VisionController extends Controller
             // Generar la ruta de imagen pública
             foreach ($articulos as $articulo) {
                 $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
-                $rutaImagen = 'articulos/' . $subcarpeta . '/' . $articulo->foto;
+                $rutaImagen = 'articulos/' . $subcarpeta . '/' . $articulo->fotoD;
 
                 // Validar si el archivo existe
                 if (Storage::exists($rutaImagen)) {
@@ -177,27 +180,77 @@ class VisionController extends Controller
                 'categorias' => $categorias
             ]);
         }
-        public function detalleArticuloDal($id)
+*/
+            public function galeriaCategoriaDal($categoria)
             {
-                $articulo = articulos::with(['color', 'categoria'])->findOrFail($id);
-                
-                // Generar ruta de imagen igual que en galeria()
-                $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
-                $nombreArchivo = $articulo->foto;
-                
-                // Si el nombre no tiene extensión, asumir .png (según tus imágenes)
-                if (!pathinfo($nombreArchivo, PATHINFO_EXTENSION)) {
-                    $nombreArchivo .= '.png';
-                }
-                
-                $rutaImagen = 'articulos/' . $subcarpeta . '/' . $nombreArchivo;
-                
-                $articulo->rutaImagen = Storage::disk('public')->exists($rutaImagen)
-                    ? Storage::url($rutaImagen)
-                    : asset('img/default-image.jpg');
+                $categorias = categorias::all();
+                $articulos = articulos::whereHas('categoria', function($query) use ($categoria) {
+                    $query->where('nombreCategoria', $categoria);
+                })->with(['color', 'categoria'])->get();
 
-                return view('galeria.detalleDal', compact('articulo'));
+                foreach ($articulos as $articulo) {
+                    $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
+                    $nombreArchivo = $articulo->fotoD; // Usamos la versión daltónica
+                    
+                    // Buscar imagen con extensión correcta
+                    $extensiones = ['.png', '.jpg', '.jpeg', '.webp'];
+                    foreach ($extensiones as $ext) {
+                        $ruta = "articulos/{$subcarpeta}/{$nombreArchivo}{$ext}";
+                        if (Storage::disk('public')->exists($ruta)) {
+                            $articulo->rutaImagen = Storage::url($ruta);
+                            break;
+                        }
+                    }
+                    
+                    if (!isset($articulo->rutaImagen)) {
+                        $articulo->rutaImagen = asset('img/default-image-daltoni.jpg');
+                    }
+                }
+
+                return view('galeria.categoriaDal', compact('articulos', 'categoria', 'categorias'));
             }
+
+
+        public function detalleArticuloDal($id)
+        {
+            $articulo = articulos::with(['color', 'categoria'])->findOrFail($id);
+
+            // 1. Carpeta daltónica (agrega 'D' al nombre de categoría)
+            $categoriaBase = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
+            $subcarpeta = $categoriaBase . 'D'; // ej: "bodasD"
+
+            // 2. Usar fotoD para la versión daltónica
+            $nombreArchivo = $articulo->fotoD;
+
+            // 3. Buscar imagen con extensión correcta
+            $extensiones = ['.png', '.jpg', '.jpeg', '.webp'];
+            foreach ($extensiones as $ext) {
+                $ruta = "articulos/{$subcarpeta}/{$nombreArchivo}{$ext}";
+                if (Storage::disk('public')->exists($ruta)) {
+                    $articulo->rutaImagen = Storage::url($ruta);
+                    break;
+                }
+            }
+
+            // 4. Si no se encuentra la imagen daltónica, usar la normal como fallback
+            if (!isset($articulo->rutaImagen)) {
+                $subcarpetaNormal = $categoriaBase;
+                foreach ($extensiones as $ext) {
+                    $ruta = "articulos/{$subcarpetaNormal}/{$nombreArchivo}{$ext}";
+                    if (Storage::disk('public')->exists($ruta)) {
+                        $articulo->rutaImagen = Storage::url($ruta);
+                        break;
+                    }
+                }
+            }
+
+            // 5. Finalmente, si no hay ninguna imagen
+            if (!isset($articulo->rutaImagen)) {
+                $articulo->rutaImagen = asset('img/default-image-daltoni.jpg');
+            }
+
+            return view('galeria.detalleDal', compact('articulo'));
+        }
 
 
         
@@ -302,7 +355,7 @@ public function cotizacionDal(Request $request)
                 'total' => $total
             ]);
         }
-
+/*
         public function agregarCotizacionDal(Request $request)
         {
             $request->validate([
@@ -342,6 +395,46 @@ public function cotizacionDal(Request $request)
             return redirect()->route('cotizacionDal')
                 ->with('success', 'Artículo agregado a la cotización');
         }
+                */
+                public function agregarCotizacionDal(Request $request)
+                {
+                    $request->validate([
+                        'idArticulo' => 'required|exists:articulos,idArticulo',
+                        'cantidad' => 'required|integer|min:1'
+                    ]);
+                    
+                    $articulo = articulos::findOrFail($request->idArticulo);
+                    
+                    // Obtener cotización actual de la sesión
+                    $cotizacion = $request->session()->get('cotizacionDal', []);
+                    
+                    // Verificar si el artículo ya está en la cotización
+                    $encontrado = false;
+                    foreach ($cotizacion as &$item) {
+                        if ($item['id'] == $articulo->idArticulo) {
+                            $item['cantidad'] += $request->cantidad;
+                            $encontrado = true;
+                            break;
+                        }
+                    }
+                    
+                    // Si no estaba, agregarlo
+                    if (!$encontrado) {
+                        $cotizacion[] = [
+                            'id' => $articulo->idArticulo,
+                            'nombre' => $articulo->nombreArticulo,
+                            'precio' => $articulo->costoArticulo,
+                            'cantidad' => $request->cantidad,
+                            'imagen' => $articulo->ruta_imagen_daltoni // Asegúrate de tener este accesor
+                        ];
+                    }
+                    
+                    // Guardar en sesión con clave específica para daltónico
+                    $request->session()->put('cotizacionDal', $cotizacion);
+                    
+                    return redirect()->route('cotizacionDal')
+                        ->with('success', 'Artículo agregado a la cotización daltónica');
+                }
 
         public function eliminarCotizacionDal(Request $request, $index)
         {
