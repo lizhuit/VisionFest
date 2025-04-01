@@ -12,6 +12,7 @@
             background-color: #D17D98;
             color: white;
         }
+        
     </style>
 </head>
 <body class="bg-FFF7F3 font-sans">

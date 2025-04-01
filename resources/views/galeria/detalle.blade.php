@@ -15,6 +15,23 @@
             vertical-align: middle;
             margin-right: 8px;
         }
+        /* Nuevos estilos para imagen completa */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background: #f8f8f8;
+            min-height: 400px;
+            height: 100%;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body class="bg-FFF7F3 font-sans">
@@ -51,16 +68,14 @@
             <!-- Detalle del Artículo -->
             <div class="flex-1 p-6 md:p-10">
                 <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-                    <div class="md:flex">
-                        <!-- Imagen del artículo -->
-                        <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-4">
-                        @php
+                    <div class="md:flex h-full">
+                        <!-- Contenedor de imagen modificado -->
+                        <div class="md:w-1/2 image-container">
+                            @php
                                 $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
                             @endphp
                             <img src="{{ asset('img/articulos/' . $subcarpeta . '/' . $articulo->foto) }}"
-                                 alt="{{ $articulo->nombreArticulo }}" 
-                                 class="w-full h-64 object-cover"
-                                    onerror="this.src='{{ asset('img/default-image.jpg') }}'">
+                                 alt="{{ $articulo->nombreArticulo }}">
                         </div>
                         
                         <!-- Información del artículo -->
@@ -116,6 +131,11 @@
                                             class="w-full px-6 py-3 bg-[#D17D98] text-white rounded-lg hover:bg-[#C599B6] transition flex items-center justify-center">
                                         <span class="mr-2">➕</span> Agregar a Cotización
                                     </button>
+                                    <br>
+                                    <a href="{{ route('galeria.categoriaDal', ['categoria' => $articulo->categoria->nombreCategoria]) }}" 
+                                    class="w-full px-6 py-3 bg-[#D17D98] text-white rounded-lg hover:bg-[#C599B6] transition flex items-center justify-center">
+                                        ← Regresar a {{ $articulo->categoria->nombreCategoria }}
+                                    </a>
                                 </form>
                                 </a>
                             </div>

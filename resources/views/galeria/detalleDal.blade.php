@@ -15,6 +15,23 @@
             vertical-align: middle;
             margin-right: 8px;
         }
+        /* Nuevos estilos para imagen completa */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background: #f8f8f8;
+            min-height: 400px;
+            height: 100%;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body class="bg-FFF7F3 font-sans">
@@ -51,16 +68,16 @@
             <!-- Detalle del Artículo -->
             <div class="flex-1 p-6 md:p-10">
                 <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-                    <div class="md:flex">
-                        <!-- Imagen del artículo -->
-                        <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-4">
+                    <div class="md:flex h-full">
+                        <!-- Contenedor de imagen modificado -->
+                        <div class="md:w-1/2 image-container">
                             @php
                                 $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
                             @endphp
                             <img src="{{ asset('img/articulos/' . $subcarpeta . '/' . $articulo->fotoD) }}"
-                                 alt="{{ $articulo->nombreArticulo }}" 
-                                 class="w-full h-64 object-cover">
+                                 alt="{{ $articulo->nombreArticulo }}">
                         </div>
+                   
                         
                         <!-- Información del artículo -->
                         <div class="p-6 md:w-1/2">
