@@ -45,8 +45,8 @@ class VisionController extends Controller
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'huitzillizbeth4@gmail.com';  // Tu correo SMTP
-                $mail->Password = 'qicqtptqqzmqcooo';  // Tu contraseña SMTP
+                $mail->Username = 'huitzillizbeth4@gmail.com'; 
+                $mail->Password = 'qicqtptqqzmqcooo'; 
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
     
