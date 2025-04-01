@@ -14,7 +14,7 @@
             </a>
             <nav class="mt-5">
                 <a href="{{ route('galeria') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
-                    <span>🖼️</span> Galería
+                    <span>🖼</span> Galería
                 </a>
                 <a href="{{ route('cotizacion') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
                     <span>📄</span> Cotización
@@ -23,7 +23,7 @@
                     <span>📧</span> Contáctanos
                 </a>
                 <a href="{{ route('configuracion') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
-                    <span>⚙️</span> Configuración
+                    <span>⚙</span> Configuración
                 </a>
             </nav>
         </div>
@@ -66,9 +66,9 @@
             }
 
             let asunto = encodeURIComponent("Consulta de " + nombre);
-            let body = encodeURIComponent(`Nombre: ${nombre}\nCorreo: ${email}\nMensaje: ${mensaje}`);
+            let body = encodeURIComponent(Nombre: ${nombre}\nCorreo: ${email}\nMensaje: ${mensaje});
 
-            window.location.href = `mailto:huitzillizbeth4@gmail.com?subject=${asunto}&body=${body}`;
+            window.location.href = mailto:huitzillizbeth4@gmail.com?subject=${asunto}&body=${body};
         }
     </script>
 </body>

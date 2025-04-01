@@ -13,11 +13,3 @@ Route::get('/configuracion', [VisionController::class, 'configuracion'])->name('
 Route::get('/correo', [VisionController::class, 'correo'])->name('correo');
 
 
-Route::get('/enviarcorreo', [CorreoController::class, 'enviarCorreo'])->name('correoj');
-
-// web.php
-
-Route::get('/galeria', [VisionController::class, 'galeria'])->name('galeria');
-Route::get('/galeria/{categoria}', [VisionController::class, 'galeriaCategoria'])->name('galeria.categoria');
-Route::get('/articulo/{id}', [VisionController::class, 'detalleArticulo'])->name('articulo.detalle');
-Route::post('/agregar-cotizacion', [VisionController::class, 'agregarCotizacion'])->name('agregar.cotizacion');

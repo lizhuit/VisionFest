@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
 use App\Models\articulos;
 use App\Models\clientes;
 use App\Models\colores;
@@ -85,6 +85,7 @@ class VisionController extends Controller
         }
 
         public function correo(){
+            Mail::to('lizbethuitzil28@gmail.com')->send(new PostCreatedMail)
             return view('correo');
         }
         
