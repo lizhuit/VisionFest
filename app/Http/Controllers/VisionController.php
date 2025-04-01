@@ -25,8 +25,6 @@ class VisionController extends Controller
         public function correo(){
             return view('correo');
         }
-<<<<<<< HEAD
-=======
        /* public function enviarcorreo(Request $request)
         {
             // Validar los datos de la solicitud
@@ -68,7 +66,7 @@ class VisionController extends Controller
             }
         }*/
         // VisionController.php
->>>>>>> b2e81ab5209c73814e9b4a7a0db2e637805ea48a
+
         public function homeDal() {
             return view('homeDaltoni');
         }
