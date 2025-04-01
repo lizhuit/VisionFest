@@ -31,14 +31,14 @@
         <div class="flex-1 flex flex-col">
             <div class="bg-[#E3A8B6] flex justify-between items-center p-4">
                 <h1 class="text-[#FFFFFF] text-3xl font-bold text-center">VisionFest</h1>
-                <img src="{{ asset('img/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
+                <img src="{{ asset('img/articulos/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
             </div>
             <h2 class="text-2xl font-bold text-[#6F2063]">Configuración</h2>
 
             <!-- Logo de VisionFest -->
             <div class="text-center p-6">
                 <div class="bg-gray-100 p-6 rounded-lg shadow-lg inline-block">
-                    <img src="{{ asset('img/logo.jpg') }}" alt="VisionFest Logo" class="w-32 mx-auto">
+                    <img src="{{ asset('img/articulos/logo.jpg') }}" alt="VisionFest Logo" class="w-32 mx-auto">
                 </div>
             </div>
             
