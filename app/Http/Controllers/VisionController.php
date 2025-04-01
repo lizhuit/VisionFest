@@ -23,9 +23,48 @@ class VisionController extends Controller
         }
 
         public function correo(){
-            //Mail::to('lizbethuitzil28@gmail.com')->send(new PostCreatedMail);
             return view('correo');
         }
+       /* public function enviarcorreo(Request $request)
+        {
+            // Validar los datos de la solicitud
+            $request->validate([
+                'nombre' => 'required|string',
+                'email' => 'required|email',
+                'mensaje' => 'required|string',
+            ]);
+    
+            $nombre = $request->input('nombre');
+            $email = $request->input('email');
+            $mensaje = $request->input('mensaje');
+    
+            // Configurar PHPMailer
+            $mail = new PHPMailer(true);
+            try {
+                // Configurar servidor SMTP
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'huitzillizbeth4@gmail.com';  // Tu correo SMTP
+                $mail->Password = 'qicqtptqqzmqcooo';  // Tu contraseña SMTP
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
+    
+                // Configuración del correo
+                $mail->setFrom('huitzillizbeth4@gmail.com', 'VisionFest Contacto');
+                $mail->addReplyTo($email, $nombre);
+                $mail->addAddress('huitzillizbeth4@gmail.com'); // Correo destino
+                $mail->Subject = "Consulta de $nombre";
+                $mail->Body = "Nombre: $nombre\nCorreo: $email\nMensaje: $mensaje";
+    
+                // Enviar el correo
+                $mail->send();
+    
+                return response()->json(['status' => 'success', 'message' => 'Correo enviado correctamente']);
+            } catch (Exception $e) {
+                return response()->json(['status' => 'error', 'message' => 'Error al enviar correo: ' . $mail->ErrorInfo]);
+            }
+        }*/
         // VisionController.php
         public function homeDal() {
             return view('homeDaltoni');

@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,27 +64,12 @@
         return;
     }
 
-    let formData = new FormData();
-    formData.append("nombre", nombre);
-    formData.append("email", email);
-    formData.append("mensaje", mensaje);
+    let asunto = encodeURIComponent("Consulta de " + nombre);
+    let body = encodeURIComponent(`Nombre: ${nombre}\nCorreo: ${email}\nMensaje: ${mensaje}`);
 
-    fetch("enviarCorreo.php", {
-        method: "POST",
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === "success") {
-            alert("Correo enviado correctamente.");
-        } else {
-            alert("Error: " + data.message);
-        }
-    })
-    .catch(error => {
-        alert("Error en la solicitud: " + error);
-    });
+    window.location.href = `mailto:huitzillizbeth4@gmail.com?subject=${asunto}&body=${body}`;
 }
+
 </script>
 </body>
 </html>
