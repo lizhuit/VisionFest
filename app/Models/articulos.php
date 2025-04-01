@@ -16,6 +16,7 @@ class articulos extends Model
         'costoArticulo',
         'detalles',
         'idColor',
+        'fotoD',
         'foto',
         'idCategoria'
     ];
@@ -35,7 +36,7 @@ class articulos extends Model
     {
         $subcarpeta = match($this->categoria->nombreCategoria) {
             'Bodas' => 'boda',
-            'XV Años' => 'xv',
+            'XV' => 'xv',
             'Cumpleaños' => 'cumple',
             'Bautizos' => 'bau',
             default => 'otros'
@@ -47,4 +48,18 @@ class articulos extends Model
         'costoArticulo' => 'float',
         // otros campos si es necesario
     ];
+
+    // Accesor para la imagen daltónica
+    public function getRutaImagenDaltoniAttribute()
+    {
+        $subcarpeta = match($this->categoria->nombreCategoria) {
+            'Bodas' => 'boda',
+            'XV' => 'xv',
+            'Cumpleaños' => 'cumple',
+            'Bautizos' => 'bau',
+            default => 'otros'
+        };
+        
+        return "img/articulos/$subcarpeta/{$this->fotoD}";
+    }
 }
