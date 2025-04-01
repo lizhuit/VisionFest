@@ -19,20 +19,23 @@ Route::get('/galeria', [VisionController::class, 'galeria'])->name('galeria');
 Route::get('/galeria/{categoria}', [VisionController::class, 'galeriaCategoria'])->name('galeria.categoria');
 Route::get('/articulo-normal/{id}', [VisionController::class, 'detalleArticulo'])->name('articulo.detalleN');
 
-// Rutas COTIZACIÓN normal
+// COTIZACIÓN normal
 Route::get('/cotizacion', [VisionController::class, 'cotizacion'])->name('cotizacion');
 Route::post('/agregar-cotizacion-normal', [VisionController::class, 'agregarCotizacion'])->name('agregar.cotizacion');
 Route::delete('/eliminar-cotizacion/{index}', [VisionController::class, 'eliminarCotizacion'])->name('eliminar.cotizacion');
 Route::post('/cancelar-cotizacion', [VisionController::class, 'cancelarCotizacion'])->name('cancelar.cotizacion');
-//-----------------------------------Galeria DALTONICO
 
+
+
+
+//-----------------------------------Galeria DALTONICO
 //detalles
 Route::get('/galeriaDal', [VisionController::class, 'galeriaDal'])->name('galeriaDal');
 Route::get('/galeriaDal/{categoria}', [VisionController::class, 'galeriaCategoriaDal'])->name('galeria.categoriaDal');
 Route::get('/articulo/{id}', [VisionController::class, 'detalleArticuloDal'])->name('articulo.detalleDal');
 Route::post('/agregar-cotizacion', [VisionController::class, 'agregarCotizacionDal  '])->name('galeria.cotizacionDal');
 
-//cotizar
+//COTIZACIÓN daltonico
 Route::get('/cotizacionDal', [VisionController::class, 'cotizacionDal'])->name('cotizacionDal');
 Route::post('/agregar-cotizacion', [VisionController::class, 'agregarCotizacionDal'])->name('agregar.cotizacionDal');
 Route::delete('/eliminar-cotizacionDal/{index}', [VisionController::class, 'eliminarCotizacionDal'])->name('eliminar.cotizacionDal');
