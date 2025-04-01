@@ -25,6 +25,8 @@ class VisionController extends Controller
         public function correo(){
             return view('correo');
         }
+<<<<<<< HEAD
+=======
        /* public function enviarcorreo(Request $request)
         {
             // Validar los datos de la solicitud
@@ -66,6 +68,7 @@ class VisionController extends Controller
             }
         }*/
         // VisionController.php
+>>>>>>> b2e81ab5209c73814e9b4a7a0db2e637805ea48a
         public function homeDal() {
             return view('homeDaltoni');
         }
@@ -130,33 +133,26 @@ class VisionController extends Controller
             ]);
         }
         
-            public function detalleArticulo($id)
-{
-    $articulo = articulos::with(['color', 'categoria'])->findOrFail($id);
-    
-    // Usar foto normal para la versión estándar
-    $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
-    $nombreArchivo = $articulo->foto; // Usamos la imagen normal
-    
-    // Si el nombre no tiene extensión, buscar la extensión correcta
-    if (!pathinfo($nombreArchivo, PATHINFO_EXTENSION)) {
-        $extensiones = ['.jpg', '.jpeg', '.png', '.webp'];
-        foreach ($extensiones as $ext) {
-            if (Storage::disk('public')->exists('articulos/'.$subcarpeta.'/'.$nombreArchivo.$ext)) {
-                $nombreArchivo .= $ext;
-                break;
-            }
-        }
-    }
-    
-    $rutaImagen = 'articulos/'.$subcarpeta.'/'.$nombreArchivo;
-    
-    $articulo->rutaImagen = Storage::disk('public')->exists($rutaImagen)
-        ? Storage::url($rutaImagen)
-        : asset('img/default-image.jpg');
+        public function detalleArticulo($id)
+        {
+            $articulo = articulos::with(['color', 'categoria'])->findOrFail($id);
 
-    return view('galeria.detalle', compact('articulo'));
-}
+            $categoriaBase = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
+            $subcarpeta = $categoriaBase;
+
+            $nombreArchivo = $articulo->foto;
+
+            $extensiones = ['.png', '.jpg', '.jpeg', '.webp'];
+            foreach ($extensiones as $ext) {
+                $ruta = "articulos/{$subcarpeta}/{$nombreArchivo}{$ext}";
+                if (Storage::disk('public')->exists($ruta)) {
+                    $articulo->rutaImagen = Storage::url($ruta);
+                    break;
+                }
+            }
+            return view('galeria.detalle', compact('articulo'));
+
+        }
         
 
 //---------------------------------------------------------------Galeria DALTONICO

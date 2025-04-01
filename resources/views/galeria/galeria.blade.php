@@ -63,10 +63,13 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach($articulos as $articulo)
                     <div class="grid-item relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                        <a href="{{ route('articulo.detalle', ['id' => $articulo->idArticulo]) }}">
-                            <img src="{{ $articulo->rutaImagen }}" 
-                                alt="{{ $articulo->nombreArticulo }}" 
-                                class="w-full h-64 object-cover">
+                        <a href="{{ route('articulo.detalleN', ['id' => $articulo->idArticulo]) }}">
+                            @php
+                                $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
+                            @endphp
+                            <img src="{{ asset('img/articulos/' . $subcarpeta . '/' . $articulo->foto) }}"
+                                 alt="{{ $articulo->nombreArticulo }}" 
+                                 class="w-full h-64 object-cover">
                             <div class="overlay absolute inset-0 bg-[#D17D98] bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity">
                                 <div class="text-center text-white p-4">
                                     <h3 class="font-bold text-xl">{{ $articulo->nombreArticulo }}</h3>
