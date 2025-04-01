@@ -95,17 +95,17 @@
     </div>
 
     <script>
-    // Mostrar el modal 
-    window.onload = function() {
-        document.getElementById('daltonicoModal').classList.remove('hidden');
-    };
+        // Mostrar el modal 
+        window.onload = function() {
+            document.getElementById('daltonicoModal').classList.remove('hidden');
+        };
 
-    // Función ajustada
-    function responderDaltonismo(esDaltonico) {
+        function responderDaltonismo(esDaltonico) {
         document.getElementById('daltonicoModal').classList.add('hidden');
+        localStorage.setItem('modoDaltonico', esDaltonico); // Guarda la preferencia
+
         if (esDaltonico) {
-            // Redirige a la nueva vista
-            window.location.href = "{{ route('homeDal') }}"; // Ajusta la ruta según tu backend
+            window.location.href = "{{ route('homeDal') }}"; 
         } else {
             alert("Gracias por tu respuesta.");
         }
