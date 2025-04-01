@@ -59,7 +59,7 @@
                                 de que todos puedan disfrutar de nuestras creaciones.
                             </p>
                             <div class="flex justify-center mt-5">
-                                <button onclick="window.location.href='{{ route('galeria') }}'" class="px-4 py-2 bg-[#FFF7F3] border-2 border-[#C599B6] hover:bg-[#FAD0C4] transition-colors">
+                                <button onclick="window.location.href='{{ route('galeriaDal') }}'" class="px-4 py-2 bg-[#FFF7F3] border-2 border-[#C599B6] hover:bg-[#FAD0C4] transition-colors">
                                     Conócenos
                                 </button>
                             </div>

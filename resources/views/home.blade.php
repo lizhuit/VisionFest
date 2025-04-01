@@ -34,7 +34,7 @@
             </nav>
         </div>
         
-        <!-- Contenido Principal -->
+
         <div class="flex-1 flex flex-col">
             <!-- Encabezado -->
             <div class="bg-[#E3A8B6] flex justify-between items-center p-4">
@@ -52,11 +52,7 @@
                 <div class="absolute top-0 bottom-0 right-0 w-40 flex items-center z-0">
                     <img src="{{ asset('img/articulos/izquierda.png') }}" alt="Globos Derecha" class="w-full h-full object-cover">
                 </div>
-                <!-- Logo -->
-                <div class="absolute top-1/3 right-10 z-10">
-                    <img src="{{ asset('img/articulos/logo.jpg') }}" alt="Logo VisionFest">
-                </div>
-
+        
                 <!-- Contenido principal -->
                 <div class="relative z-10 text-center">
                     <h2 class="text-3xl font-bold">"Tu visión, nuestra creación"</h2>
@@ -69,12 +65,17 @@
                         <p class="mt-3 text-gray-700 max-w-2xl mx-auto">
                             Nuestra marca realiza decoraciones de globos para cualquier tipo de evento. Estamos preparados para realizar lo que tengas en mente para sorprender a tus invitados.
                         </p>
+                        
+                        <!-- Imagen debajo del texto -->
+                        <div class="mt-8 flex justify-center">
+                            <img src="{{ asset('img/articulos/logo.jpg') }}" alt="Logo VisionFest" class="max-w-xs rounded-lg shadow-lg">
+                        </div>
+                        
                         <div class="flex justify-center mt-5">
                             <button onclick="window.location.href='{{ route('galeria') }}'" class="px-2 py-2 bg-[#FFF7F3] border-2 border-[#C599B6] hover:bg-[#B76A87]">
                                 Conócenos
                             </button>
                         </div>
-
                     </div>
                 </div>
             </div>
