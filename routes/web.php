@@ -24,7 +24,7 @@ Route::get('/cotizacion', [VisionController::class, 'cotizacion'])->name('cotiza
 Route::post('/agregar-cotizacion-normal', [VisionController::class, 'agregarCotizacion'])->name('agregar.cotizacion');
 Route::delete('/eliminar-cotizacion/{index}', [VisionController::class, 'eliminarCotizacion'])->name('eliminar.cotizacion');
 Route::post('/cancelar-cotizacion', [VisionController::class, 'cancelarCotizacion'])->name('cancelar.cotizacion');
-
+Route::get('/descargar-cotizacion', [VisionController::class, 'descargarCotizacion'])->name('descargar.cotizacion');
 
 
 
