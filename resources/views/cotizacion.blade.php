@@ -121,6 +121,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         <a href="{{ route('galeria') }}" class="px-4 py-2 bg-[#D17D98] text-white rounded hover:bg-[#C599B6]">
                             Ir a la Galeria
                         </a>
+                        <a href="{{ route('descargar.cotizacion') }}" class="px-4 py-2 bg-[#D17D98] text-white rounded hover:bg-[#C599B6]">
+                            Descargar Cotización
+                        </a>
                     </div>
                 @else
                     <div class="text-center py-10">
@@ -129,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             Ir a la Galería
                         </a>
                     </div>
+                    
                 @endif
             </div>
         </div>

@@ -13,6 +13,7 @@ use App\Models\cotizaciones;
 use App\Models\estados;
 use App\Models\categorias;
 
+use Barryvdh\DomPDF\Facade as PDF;
 
 class VisionController extends Controller
 {
@@ -466,4 +467,22 @@ public function cotizacionDal(Request $request)
             return redirect()->route('cotizacionDal')
                 ->with('success', 'Cotización cancelada');
         }
+
+
+//----------------------------------------------------------PDF
+public function descargarCotizacion(Request $request)
+{
+    // Obtener la cotización actual de la sesión
+    $cotizacion = $request->session()->get('cotizacion', []);
+    
+    // Calcular total
+    $total = 0;
+    foreach ($cotizacion as $item) {
+        $total += $item['precio'] * $item['cantidad'];
+    }
+    
+    // Generar el PDF
+    $pdf = app('dompdf.wrapper')->loadView('pdf.cotizacion', ['productosCotizacion' => $cotizacion, 'total' => $total]);
+    return $pdf->download('cotizacion.pdf');
+}        
 }

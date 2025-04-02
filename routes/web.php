@@ -43,4 +43,5 @@ Route::delete('/eliminar-cotizacionDal/{index}', [VisionController::class, 'elim
 Route::post('/cancelar-cotizacionDal', [VisionController::class, 'cancelarCotizacionDal'])->name('cancelar.cotizacionDal');
 
 
-
+//-----------------------------------PDF
+Route::get('/descargar-cotizacion', [VisionController::class, 'descargarCotizacion'])->name('descargar.cotizacion');
