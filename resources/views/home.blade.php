@@ -24,7 +24,6 @@
                 <a href="{{ route('cotizacion') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
                     <span>📄</span> Cotización
                 </a>
-                </a>
                 <a href="{{ route('correo') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg mt-2">
                     <span>📧</span> Contáctanos
                 </a>
@@ -38,9 +37,7 @@
         <div class="flex-1 flex flex-col">
             <!-- Encabezado -->
             <div class="bg-[#E3A8B6] flex justify-between items-center p-4">
-
                 <h1 class="text-[#FFFFFF] text-3xl font-bold text-center">VisionFest</h1>
-
                 <img src="{{ asset('img/articulos/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
             </div>
             <!-- Contenido principal -->
@@ -82,35 +79,11 @@
         </div>
     </div>
 
-    <!-- Modal para pregunta -->
-    <div id="daltonicoModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
-
-        <div class="bg-[#B76A87] p-6 rounded-lg shadow-xl max-w-md w-full text-center">
-            <p class="text text-xl font-bold mb-4">¿Eres Daltónico?</p>
-            <div class="flex justify-center gap-4">
-                <button onclick="responderDaltonismo(true)" class="px-2 py-2 bg-[#FFF7F3] border-2 border-[#C599B6] hover:bg-[#B76A87]">Sí</button>
-                <button onclick="responderDaltonismo(false)" class="px-2 py-2 bg-[#FFF7F3] border-2 border-[#C599B6] hover:bg-[#B76A87]">No</button>
-            </div>
-        </div>
+    <!-- Botón para configuración del modo daltónico -->
+    <div class="fixed bottom-4 right-4">
+        <button onclick="window.location.href='{{ route('configuracion') }}'" class="flex items-center gap-2 px-4 py-2 bg-[#B76A87] text-white rounded-full shadow-lg hover:bg-[#9B5A73]">
+            <span>👁️‍🗨️</span> Modo Daltónico
+        </button>
     </div>
-
-    <script>
-        // Mostrar el modal 
-        window.onload = function() {
-            document.getElementById('daltonicoModal').classList.remove('hidden');
-        };
-
-        function responderDaltonismo(esDaltonico) {
-        document.getElementById('daltonicoModal').classList.add('hidden');
-        localStorage.setItem('modoDaltonico', esDaltonico); // Guarda la preferencia
-
-        if (esDaltonico) {
-            window.location.href = "{{ route('homeDal') }}"; 
-        } else {
-            alert("Gracias por tu respuesta.");
-        }
-    }
-</script>
-
 </body>
 </html>

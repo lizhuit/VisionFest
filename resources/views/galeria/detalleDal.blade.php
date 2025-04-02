@@ -38,7 +38,7 @@
     <div class="flex h-screen">
         <!-- Sidebar -->
         <div class="w-64 bg-[#FAD0C4] p-5 flex flex-col">
-            <a href="{{ route('home') }}" class="text-center text-[#D17D98] text-3xl mb-4">
+            <a href="{{ route('homeDal') }}" class="text-center text-[#D17D98] text-3xl mb-4">
                 <span class="text-4xl">🏠</span>
             </a>
             <nav class="mt-5">

@@ -25,6 +25,9 @@ class VisionController extends Controller
         public function correo(){
             return view('correo');
         }
+        public function correoDal(){
+            return view('correoDal');
+        }
        /* public function enviarcorreo(Request $request)
         {
             // Validar los datos de la solicitud
