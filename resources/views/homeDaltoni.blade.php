@@ -13,7 +13,7 @@
     <div class="flex h-screen">
         <!-- Menú lateral ajustado -->
         <div class="w-64 bg-[#FAD0C4] p-5 flex flex-col shrink-0">
-            <a href="{{ route('home') }}" class="text-center text-[#D17D98] text-3xl mb-4">
+            <a href="{{ route('homeDal') }}" class="text-center text-[#D17D98] text-3xl mb-4">
                 <span class="text-4xl">🏠</span>
             </a>
             <nav class="mt-5 flex flex-col space-y-2">
@@ -23,7 +23,7 @@
                 <a href="{{ route('cotizacion') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg hover:bg-[#E3A8B6] transition-colors">
                     <span>📄</span> Cotización
                 </a>
-                <a href="{{ route('correo') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg hover:bg-[#E3A8B6] transition-colors">
+                <a href="{{ route('correoDal') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg hover:bg-[#E3A8B6] transition-colors">
                     <span>📧</span> Contáctanos
                 </a>
                 <a href="{{ route('configuracion') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg hover:bg-[#E3A8B6] transition-colors">
@@ -115,6 +115,13 @@
                 </div>
             </div>
         </div>
+    </div>
+
+<!-- Botón para configuración del modo daltónico -->
+<div class="fixed bottom-4 right-4">
+        <button onclick="window.location.href='{{ route('configuracion') }}'" class="flex items-center gap-2 px-4 py-2 bg-[#B76A87] text-white rounded-full shadow-lg hover:bg-[#9B5A73]">
+            <span>👁️‍🗨️</span> Modo Daltónico
+        </button>
     </div>
 </body>
 </html>
