@@ -62,4 +62,8 @@ class articulos extends Model
         
         return "img/articulos/$subcarpeta/{$this->fotoD}";
     }
+    public function colores()
+{
+    return $this->belongsToMany(Color::class, 'detallesarticulos', 'idArticulo', 'idColor');
+}
 }

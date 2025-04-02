@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Models\articulos;
+use App\Models\detallesarticulos;
 use App\Models\clientes;
 use App\Models\colores;
 use App\Models\cotizaciones;
@@ -186,34 +187,7 @@ class VisionController extends Controller
 
                 return view('galeria.galeriaDaltoni', compact('articulos', 'categorias'));
             }
-/*
-            public function galeriaCategoriaDal($categoria)
-        {
-            $categorias = categorias::all();
-            $articulos = articulos::whereHas('categoria', function($query) use ($categoria) {
-                $query->where('nombreCategoria', $categoria);
-            })->with(['color', 'categoria'])->get();
 
-            // Generar la ruta de imagen pública
-            foreach ($articulos as $articulo) {
-                $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
-                $rutaImagen = 'articulos/' . $subcarpeta . '/' . $articulo->fotoD;
-
-                // Validar si el archivo existe
-                if (Storage::exists($rutaImagen)) {
-                    $articulo->rutaImagen = Storage::url($rutaImagen);
-                } else {
-                    $articulo->rutaImagen = asset('img/imagen-no-encontrada.png'); // Imagen por defecto
-                }
-            }
-
-            return view('galeria.categoriaDal', [
-                'articulos' => $articulos,
-                'categoria' => $categoria,
-                'categorias' => $categorias
-            ]);
-        }
-*/
             public function galeriaCategoriaDal($categoria)
             {
                 $categorias = categorias::all();
@@ -284,7 +258,6 @@ class VisionController extends Controller
 
             return view('galeria.detalleDal', compact('articulo'));
         }
-
 
         
 

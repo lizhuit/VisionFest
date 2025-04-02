@@ -10,4 +10,10 @@ class colores extends Model
     use HasFactory;
     protected $primaryKey = 'idColor'; 
     protected $fillable=['idColor','nombreColor'];
+
+    // Relación con detalles
+    public function articulos()
+    {
+        return $this->belongsToMany(Articulo::class, 'detallesarticulos', 'idColor', 'idArticulo');
+    }
 }
