@@ -59,6 +59,12 @@
     <div class="total">
         <span>Total: ${{ number_format($total, 2) }}</span>
     </div>
+
+    <div style="margin-top: 20px; text-align: center;">
+        <p>Para cualquier duda o aclaración, contáctenos:</p>
+        <p>Teléfono: 2217130772</p>
+        <p>Correo electrónico: huitzillizbeth4@gmail.com</p>
+    </div>
     
     <div class="footer">
         Gracias por su preferencia - VisionFest
