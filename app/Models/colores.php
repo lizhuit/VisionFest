@@ -9,7 +9,7 @@ class colores extends Model
 {
     use HasFactory;
     protected $primaryKey = 'idColor'; 
-    protected $fillable=['idColor','nombreColor'];
+    protected $fillable=['idColor','nombreColor','hexa'];
 
     // Relación con detalles
     public function articulos()

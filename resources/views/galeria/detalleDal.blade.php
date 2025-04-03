@@ -32,6 +32,34 @@
             height: auto;
             object-fit: contain;
         }
+
+        /* Estilos para los círculos de color */
+        .color-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+            margin: 0 10px;
+        }
+        .color-number {
+            font-size: 18px;
+            margin-bottom: 2px;
+        }
+        .color-name {
+            font-size: 10px;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1;
+        }
+        /* Ajustar contraste de texto según el color de fondo */
+        .dark-color { color: white; }
+        .light-color { color: black; }
     </style>
 </head>
 <body class="bg-FFF7F3 font-sans">
@@ -70,6 +98,7 @@
                 <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
                     <div class="md:flex h-full">
                         <!-- Contenedor de imagen modificado -->
+                         <!--
                         <div class="md:w-1/2 image-container">
                             @php
                                 $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
@@ -77,7 +106,49 @@
                             <img src="{{ asset('img/articulos/' . $subcarpeta . '/' . $articulo->fotoD) }}"
                                  alt="{{ $articulo->nombreArticulo }}">
                         </div>
-                   
+    -->
+                       <!-- Contenedor de imagen y colores -->
+                        <div class="flex flex-col items-center">
+                            <!-- Contenedor de la imagen -->
+                            <div class="image-container">
+                                @php
+                                    $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
+                                @endphp
+                                <img src="{{ asset('img/articulos/' . $subcarpeta . '/' . $articulo->fotoD) }}" 
+                                    alt="{{ $articulo->nombreArticulo }}">
+                            </div>
+
+                            <!-- Mostrar Colores debajo de la imagen -->
+                            @if($colores->isNotEmpty())
+    <div class="mt-4 text-center">
+        <h3 class="text-lg font-semibold text-gray-700 mb-4">Los colores que ves en la imagen son:</h3>
+        <div class="flex flex-wrap gap-8 justify-center">
+            @foreach ($colores as $color)
+                @php
+                    // Calcular contraste (usando hexa)
+                    $hexForContrast = str_replace('#', '', $color->hexa ?? 'FFFFFF');
+                    $r = hexdec(substr($hexForContrast, 0, 2));
+                    $g = hexdec(substr($hexForContrast, 2, 2));
+                    $b = hexdec(substr($hexForContrast, 4, 2));
+                    $luminance = (0.299 * $r + 0.587 * $g + 0.114 * $b) / 255;
+                    $textColor = $luminance > 0.5 ? 'text-black' : 'text-white';
+                @endphp
+
+                <div class="flex flex-col items-center">
+                    <!-- Círculo con idColor (no más $index) -->
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center shadow-md mb-2" 
+                         style="background-color: {{ $color->hexa ?? '#CCCCCC' }};">
+                        <span class="{{ $textColor }} font-bold text-xl">{{ $color->idColor }}</span> <!-- Cambio aquí -->
+                    </div>
+                    <!-- Nombre del color -->
+                    <span class="text-gray-700 text-sm font-medium">{{ $color->nombreColor }}</span>
+                </div>
+            @endforeach
+        </div>
+    </div>
+@endif
+                        </div>
+
                         
                         <!-- Información del artículo -->
                         <div class="p-6 md:w-1/2">

@@ -13,6 +13,7 @@ use App\Models\cotizaciones;
 use App\Models\estados;
 use App\Models\categorias;
 
+use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
 
 class VisionController extends Controller
@@ -135,7 +136,7 @@ class VisionController extends Controller
                 'categorias' => $categorias
             ]);
         }
-        
+       
         public function detalleArticulo($id)
         {
             $articulo = articulos::with(['color', 'categoria'])->findOrFail($id);
@@ -156,7 +157,10 @@ class VisionController extends Controller
             return view('galeria.detalle', compact('articulo'));
 
         }
-        
+ 
+
+
+
 
 //---------------------------------------------------------------Galeria DALTONICO
 
@@ -225,6 +229,13 @@ class VisionController extends Controller
         public function detalleArticuloDal($id)
         {
             $articulo = articulos::with(['color', 'categoria'])->findOrFail($id);
+            // Ajuste con el nombre correcto de la tabla
+                // En tu controlador (detalleArticuloDal):
+                $colores = DB::table('detallesarticulos')
+                ->join('colores', 'detallesarticulos.idColor', '=', 'colores.idColor')
+                ->where('detallesarticulos.idArticulo', $id)
+                ->select('colores.idColor', 'colores.nombreColor', 'colores.hexa') // ¡Incluye idColor!
+                ->get();
 
             // 1. Carpeta daltónica (agrega 'D' al nombre de categoría)
             $categoriaBase = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
@@ -242,6 +253,7 @@ class VisionController extends Controller
                     break;
                 }
             }
+                
 
             // 4. Si no se encuentra la imagen daltónica, usar la normal como fallback
             if (!isset($articulo->rutaImagen)) {
@@ -260,10 +272,9 @@ class VisionController extends Controller
                 $articulo->rutaImagen = asset('img/default-image-daltoni.jpg');
             }
 
-            return view('galeria.detalleDal', compact('articulo'));
+            return view('galeria.detalleDal', compact('articulo', 'colores'));
         }
-
-        
+           
 
 
 
@@ -365,47 +376,7 @@ public function cotizacionDal(Request $request)
                 'total' => $total
             ]);
         }
-/*
-        public function agregarCotizacionDal(Request $request)
-        {
-            $request->validate([
-                'idArticulo' => 'required|exists:articulos,idArticulo',
-                'cantidad' => 'required|integer|min:1'
-            ]);
-            
-            // Obtener el artículo
-            $articulo = articulos::findOrFail($request->idArticulo);
-            
-            // Obtener cotización actual de la sesión
-            $cotizacion = $request->session()->get('cotizacionDal', []);
-            
-            // Verificar si el artículo ya está en la cotización
-            $encontrado = false;
-            foreach ($cotizacion as &$item) {
-                if ($item['id'] == $articulo->idArticulo) {
-                    $item['cantidad'] += $request->cantidad;
-                    $encontrado = true;
-                    break;
-                }
-            }
-            
-            // Si no estaba, agregarlo
-            if (!$encontrado) {
-                $cotizacion[] = [
-                    'id' => $articulo->idArticulo,
-                    'nombre' => $articulo->nombreArticulo,
-                    'precio' => $articulo->costoArticulo,
-                    'cantidad' => $request->cantidad
-                ];
-            }
-            
-            // Guardar en sesión
-            $request->session()->put('cotizacionDal', $cotizacion);
-            
-            return redirect()->route('cotizacionDal')
-                ->with('success', 'Artículo agregado a la cotización');
-        }
-                */
+
                 public function agregarCotizacionDal(Request $request)
                 {
                     $request->validate([
