@@ -97,16 +97,7 @@
             <div class="flex-1 p-6 md:p-10">
                 <div class="max-w-5xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
                     <div class="md:flex h-full">
-                        <!-- Contenedor de imagen modificado -->
-                         <!--
-                        <div class="md:w-1/2 image-container">
-                            @php
-                                $subcarpeta = strtolower(str_replace(' ', '-', $articulo->categoria->nombreCategoria));
-                            @endphp
-                            <img src="{{ asset('img/articulos/' . $subcarpeta . '/' . $articulo->fotoD) }}"
-                                 alt="{{ $articulo->nombreArticulo }}">
-                        </div>
-    -->
+                
                        <!-- Contenedor de imagen y colores -->
                         <div class="flex flex-col items-center">
                             <!-- Contenedor de la imagen -->
@@ -136,9 +127,8 @@
 
                                             <div class="flex flex-col items-center">
                                                 <!-- Círculo con idColor (no más $index) -->
-                                                <div class="w-16 h-16 rounded-full flex items-center justify-center shadow-md mb-2" 
-                                                    style="background-color: {{ $color->hexa ?? '#CCCCCC' }};">
-                                                    <span class="{{ $textColor }} font-bold text-xl">{{ $color->idColor }}</span> <!-- Cambio aquí -->
+                                                <div class="w-16 h-16 rounded-full flex items-center justify-center shadow-md mb-2 border-2 border-black" 
+                                                    style="background-color: {{ $color->hexa ?? '#CCCCCC' }};"><span class="{{ $textColor }} font-bold text-xl">{{ $color->idColor }}</span> <!-- Cambio aquí -->
                                                 </div>
                                                 <!-- Nombre del color -->
                                                 <span class="text-gray-700 text-sm font-medium">{{ $color->nombreColor }}</span>
@@ -174,8 +164,8 @@
                                 <h3 class="text-lg font-semibold text-gray-700 mb-2">Descripción:</h3>
                                 <p class="text-gray-700">{{ $articulo->detalles ?? 'No hay descripción disponible' }}</p>
                             </div>
-                            
-                            <!-- Color -->
+                            <!--
+                           Detalle de colores disponibles
                             @if($articulo->color)
                             <div class="mb-6">
                                 <h3 class="text-lg font-semibold text-gray-700 mb-2">Color:</h3>
@@ -185,7 +175,7 @@
                                 </div>
                             </div>
                             @endif
-                            
+    -->
                             <!-- Botones -->
                             <div class="mt-8 space-y-4">
                                 <!-- Reemplaza el formulario actual con este -->
