@@ -132,7 +132,7 @@
                                         <span class="mr-2">➕</span> Agregar a Cotización
                                     </button>
                                     <br>
-                                    <a href="{{ route('galeria.categoriaDal', ['categoria' => $articulo->categoria->nombreCategoria]) }}" 
+                                    <a href="{{ route('galeria.categoria', ['categoria' => $articulo->categoria->nombreCategoria]) }}" 
                                     class="w-full px-6 py-3 bg-[#D17D98] text-white rounded-lg hover:bg-[#C599B6] transition flex items-center justify-center">
                                         ← Regresar a {{ $articulo->categoria->nombreCategoria }}
                                     </a>

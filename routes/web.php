@@ -12,7 +12,6 @@ Route::get('/correo', [VisionController::class, 'correo'])->name('correo');
 Route::post('/enviarcorreo', [VisionController::class, 'enviarcorreo']);
 Route::get('correoDal', [VisionController::class, 'correoDal'])->name('correoDal');
 
-//Route::get('/enviarcorreo', [CorreoController::class, 'enviarCorreo'])->name('correoj');
 
 //-----------------------------------Galeria Normal
 

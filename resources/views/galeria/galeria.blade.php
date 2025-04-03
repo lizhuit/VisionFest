@@ -45,7 +45,7 @@
                 <img src="{{ asset('img/articulos/logo.jpg') }}" alt="VisionFest Logo" class="w-16 h-16 ml-auto">
             </div>
             
-            <h2 class="text-2xl font-bold text-[#6F2063] p-4">Galería</h2>
+            <h2 class="text-2xl font-bold text-[#6F2063] p-4">Galería de Fotos</h2>
 
             <!-- Contenido Principal de la Galería -->
             <div class="flex-1 p-10 overflow-y-auto">

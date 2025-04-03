@@ -414,7 +414,7 @@ public function cotizacionDal(Request $request)
                     $request->session()->put('cotizacionDal', $cotizacion);
                     
                     return redirect()->route('cotizacionDal')
-                        ->with('success', 'Artículo agregado a la cotización daltónica');
+                        ->with('success', 'Artículo agregado a la cotización.');
                 }
 
         public function eliminarCotizacionDal(Request $request, $index)

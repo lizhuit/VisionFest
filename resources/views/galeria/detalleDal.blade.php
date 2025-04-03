@@ -120,35 +120,36 @@
 
                             <!-- Mostrar Colores debajo de la imagen -->
                             @if($colores->isNotEmpty())
-    <div class="mt-4 text-center">
-        <h3 class="text-lg font-semibold text-gray-700 mb-4">Los colores que ves en la imagen son:</h3>
-        <div class="flex flex-wrap gap-8 justify-center">
-            @foreach ($colores as $color)
-                @php
-                    // Calcular contraste (usando hexa)
-                    $hexForContrast = str_replace('#', '', $color->hexa ?? 'FFFFFF');
-                    $r = hexdec(substr($hexForContrast, 0, 2));
-                    $g = hexdec(substr($hexForContrast, 2, 2));
-                    $b = hexdec(substr($hexForContrast, 4, 2));
-                    $luminance = (0.299 * $r + 0.587 * $g + 0.114 * $b) / 255;
-                    $textColor = $luminance > 0.5 ? 'text-black' : 'text-white';
-                @endphp
+                                <div class="mt-4 text-center">
+                                    <h3 class="text-lg font-semibold text-gray-700 mb-4">Los colores que ves en la imagen son:</h3>
+                                    <div class="flex flex-wrap gap-8 justify-center">
+                                        @foreach ($colores as $color)
+                                            @php
+                                                // Calcular contraste (usando hexa)
+                                                $hexForContrast = str_replace('#', '', $color->hexa ?? 'FFFFFF');
+                                                $r = hexdec(substr($hexForContrast, 0, 2));
+                                                $g = hexdec(substr($hexForContrast, 2, 2));
+                                                $b = hexdec(substr($hexForContrast, 4, 2));
+                                                $luminance = (0.299 * $r + 0.587 * $g + 0.114 * $b) / 255;
+                                                $textColor = $luminance > 0.5 ? 'text-black' : 'text-white';
+                                            @endphp
 
-                <div class="flex flex-col items-center">
-                    <!-- Círculo con idColor (no más $index) -->
-                    <div class="w-16 h-16 rounded-full flex items-center justify-center shadow-md mb-2" 
-                         style="background-color: {{ $color->hexa ?? '#CCCCCC' }};">
-                        <span class="{{ $textColor }} font-bold text-xl">{{ $color->idColor }}</span> <!-- Cambio aquí -->
-                    </div>
-                    <!-- Nombre del color -->
-                    <span class="text-gray-700 text-sm font-medium">{{ $color->nombreColor }}</span>
-                </div>
-            @endforeach
-        </div>
-    </div>
-@endif
+                                            <div class="flex flex-col items-center">
+                                                <!-- Círculo con idColor (no más $index) -->
+                                                <div class="w-16 h-16 rounded-full flex items-center justify-center shadow-md mb-2" 
+                                                    style="background-color: {{ $color->hexa ?? '#CCCCCC' }};">
+                                                    <span class="{{ $textColor }} font-bold text-xl">{{ $color->idColor }}</span> <!-- Cambio aquí -->
+                                                </div>
+                                                <!-- Nombre del color -->
+                                                <span class="text-gray-700 text-sm font-medium">{{ $color->nombreColor }}</span>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
                         </div>
 
+                        
                         
                         <!-- Información del artículo -->
                         <div class="p-6 md:w-1/2">
