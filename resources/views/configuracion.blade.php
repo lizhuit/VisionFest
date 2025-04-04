@@ -88,11 +88,16 @@
     }
 
     function cerrarModal() {
-        let modal = document.getElementById('accionModal');
-        if (modal) {
-            modal.classList.add('hidden');
-        }
+    let modal = document.getElementById('accionModal');
+    if (modal) {
+        modal.classList.add('hidden');
     }
+
+    // Redirigir a la vista correspondiente según el estado actual del modo daltónico
+    let esDaltonico = localStorage.getItem('modoDaltonico') === 'true';
+    window.location.href = esDaltonico ? "{{ route('homeDal') }}" : "{{ route('home') }}";
+    }
+
 
     document.addEventListener("DOMContentLoaded", actualizarTextoBotonYMensaje);
 </script>
