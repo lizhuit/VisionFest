@@ -20,7 +20,7 @@
                 <a href="{{ route('galeriaDal') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg hover:bg-[#E3A8B6] transition-colors">
                     <span>🖼️</span> Galería
                 </a>
-                <a href="{{ route('cotizacion') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg hover:bg-[#E3A8B6] transition-colors">
+                <a href="{{ route('cotizacionDal') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg hover:bg-[#E3A8B6] transition-colors">
                     <span>📄</span> Cotización
                 </a>
                 <a href="{{ route('correoDal') }}" class="flex items-center gap-2 p-3 text-white bg-[#D17D98] rounded-lg hover:bg-[#E3A8B6] transition-colors">
